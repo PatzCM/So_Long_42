@@ -19,7 +19,9 @@
 # include <unistd.h>
 # include <string.h>
 # include "mlx/mlx.h"
-# include "libs/Printf/ft_printf.h"
+# include "libs/ft_printf.h"
+# include "libs/get_next_line_bonus.h"
+# include "libs/libft.h"
 # include <strings.h>
 # include <fcntl.h>
 
@@ -28,8 +30,16 @@ typedef	struct s_game {
 	void	*window;
 }	t_game;
 
+// Parsing Map
+//	int		read_map(t_game *game, char *path);
+//	int		check_map(t_game *game);
+//	int		check_surroundings(t_game *game, int x, int y);
+
+int		validate_ber(char *file);
+char	**matrix(char *file);
+void	validate_shape(char **matrix);
+
 // Defines
-// Map
 // # define MAP_PATH "maps/map.ber"
 //
 // Window
@@ -118,13 +128,6 @@ typedef	struct s_game {
 //	int		check_collectible(t_game *game, int x, int y);
 //	int		check_exit(t_game *game, int x, int y);
 //
-//	// Map
-//	int		read_map(t_game *game, char *path);
-//	int		parse_map(t_game *game, char *line);
-//	int		check_map(t_game *game);
-//	int		check_line(t_game *game, char *line);
-//	int		check_surroundings(t_game *game, int x, int y);
-//	
 //
 //
 //	// Utils

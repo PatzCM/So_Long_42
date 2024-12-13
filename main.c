@@ -1,14 +1,13 @@
-#include "mlx/mlx.h"
 #include "so_long.h"
 
-int	main (void)
+int	main (int argc, char **argv)
 {
-	t_game *game;
-
-	game = NULL;
-	game = (t_game *)malloc(sizeof(t_game));
-game->mlx = mlx_init();
-game->window = mlx_new_window(game->mlx, 800, 600, "so_long");
-mlx_loop(game->mlx);
-return (0);
+	char *file = argv[1];
+	if (argc == 2)
+	{
+		char **mtx =	matrix(file);
+		validate_ber(argv[0]);
+		validate_shape(mtx);
+	}
 }
+
