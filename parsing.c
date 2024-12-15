@@ -33,10 +33,11 @@ static int	size_map(char *file)
 	return (i);
 }
 
-char	**matrix(char *file, t_matrix mtx)
+char	**matrix(char *file)
 {
 	int			i;
-
+	t_matrix mtx;
+	
 	i = size_map(file);
 	mtx.fd = open(file, O_RDONLY);
 	mtx.matrix = (char **)malloc(sizeof(char *) * i);

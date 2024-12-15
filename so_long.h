@@ -61,8 +61,9 @@ typedef struct s_player
 //	int		check_map(t_game *game);
 //	int		check_surroundings(t_game *game, int x, int y);
 
+void	map_validation(char *file);
 int		validate_ber(char *file);
-char	**matrix(char *file, t_matrix mtx);
+char	**matrix(char *file);
 void	validate_shape(char **matrix);
 int		size_row(char **matrix);
 int		size_column(char **matrix);
@@ -72,9 +73,11 @@ int		size_column(char **matrix);
 
 // Pathing
 
-t_player				*player_position(char **matrix, t_player *player);
-void	*validate_path(char **matrix,	int x, int y, t_game *collectibles);
-
+void	player_position(char **matrix, t_player *player);
+void	flood_fill(char **matrix,	int x, int y, t_player *player);
+int	confirm_flood(char **matrix, t_player *player);
+t_player	*player_alloc(char **mtx);
+void	error_validation(char **matrix, t_game *collectibles, t_player *player);
 // Defines
 // # define MAP_PATH "maps/map.ber"
 //

@@ -46,5 +46,6 @@ int	number_of_elements(char **matrix, int collectibles)
 	}
 	if (collectibles == 0 || game.player == 0 || game.exit == 0 || game.player > 1 || game.exit > 1)
 		return (write(1, "Error\n", 6), -1);
+	game.collectibles = collectibles;
 	return (collectibles);
 }
