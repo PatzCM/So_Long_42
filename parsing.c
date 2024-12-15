@@ -1,16 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/15 00:07:19 by palexand          #+#    #+#             */
+/*   Updated: 2024/12/15 00:07:19 by palexand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-char	**matrix(char *file)
+static int	size_map(char *file)
 {
 	int		fd;
-	char	*line;
-	char	**matrix;
 	int		i;
+	char	*line;
 
-	i = 1;
+	i = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (NULL);
+		return (-1);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -19,19 +30,27 @@ char	**matrix(char *file)
 		i++;
 	}
 	close(fd);
-	fd = open(file, O_RDONLY);
-	matrix = (char **)malloc(sizeof(char *) * i);
+	return (i);
+}
+
+char	**matrix(char *file, t_matrix mtx)
+{
+	int			i;
+
+	i = size_map(file);
+	mtx.fd = open(file, O_RDONLY);
+	mtx.matrix = (char **)malloc(sizeof(char *) * i);
 	i = 0;
-	line = get_next_line(fd);
-	while (line)
+	mtx.line = get_next_line(mtx.fd);
+	while (mtx.line)
 	{
-		matrix[i] = line;
-		line = get_next_line(fd);
+		mtx.matrix[i] = mtx.line;
+		mtx.line = get_next_line(mtx.fd);
 		i++;
 	}
-	matrix[i] = NULL;
-	close(fd);
-	return (matrix);
+	mtx.matrix[i] = NULL;
+	close(mtx.fd);
+	return (mtx.matrix);
 }
 
 int	validate_ber(char *file)
@@ -39,37 +58,40 @@ int	validate_ber(char *file)
 	int	i;
 
 	i = ft_strlen(file);
-	
-		if (i < 4)
-			return (-1);
-		if (file[i - 1] == 'r' && file[i - 2] == 'e' && file[i - 3] == 'b' && file[i - 4] == '.')
-			return (0);
-		else
-			return (-1);
+	if (i < 4)
+		return (-1);
+	if (file[i - 1] == 'r' && file[i - 2] == 'e'
+		&& file[i - 3] == 'b' && file[i - 4] == '.')
+		return (0);
+	else
+		return (NULL, write(1, "Error\n", 6));
 }
 
 void	validate_shape(char **matrix)
 {
-	int	column;
-	int	row;
-	int counter;
+	t_map	map;
 
-	column = 0;
-	row = 0;
-	counter = 0;
-
-	while (matrix[row][column++])
-		counter++;
-	while(matrix[row])
+	map.row = 0;
+	map.row_end = size_row(matrix);
+	map.column_end = size_column(matrix);
+	while (matrix[map.row] && map.row < map.row_end)
 	{
-		column = 0;	
-		while (matrix[row][column])
-			column++;
-		if (column != counter)
+		map.column = 0;
+		while (matrix[map.row][map.column] && map.column < map.column_end)
 		{
-			ft_printf("Error\n");
-			exit(0);
+			if (matrix[map.row][map.column] != '1'
+				&& matrix[map.row][map.column] != '0'
+				&& matrix[map.row][map.column] != 'P'
+				&& matrix[map.row][map.column] != 'E'
+				&& matrix[map.row][map.column] != 'C'
+				&& matrix[map.row][map.column] != '\n'
+				|| matrix[map.row][map.column_end - 1] != '1'
+				|| matrix[map.row_end - 1][map.column] != '1')
+				exit(0);
+			map.column++;
 		}
-		row++;
+		if (map.column != map.column_end)
+			exit(0);
+		map.row++;
 	}
 }

@@ -25,10 +25,36 @@
 # include <strings.h>
 # include <fcntl.h>
 
-typedef	struct s_game {
+typedef	struct s_game
+{
 	void	*mlx;
 	void	*window;
+	int		collectibles;
+	int		exit;
+	int		player;
 }	t_game;
+
+typedef struct s_matrix
+{
+	char	**matrix;
+	char	*line;
+	int		fd;
+}	t_matrix;
+
+typedef struct s_map
+{
+	int		row;
+	int		column;
+	int		row_end;
+	int		column_end;
+
+}	t_map;
+
+typedef struct s_player
+{
+	int	x;
+	int	y;
+}	t_player;
 
 // Parsing Map
 //	int		read_map(t_game *game, char *path);
@@ -36,8 +62,18 @@ typedef	struct s_game {
 //	int		check_surroundings(t_game *game, int x, int y);
 
 int		validate_ber(char *file);
-char	**matrix(char *file);
+char	**matrix(char *file, t_matrix mtx);
 void	validate_shape(char **matrix);
+int		size_row(char **matrix);
+int		size_column(char **matrix);
+int		number_of_elements(char **matrix, int collectibles);
+int		size_row(char **matrix);
+int		size_column(char **matrix);
+
+// Pathing
+
+t_player				*player_position(char **matrix, t_player *player);
+void	*validate_path(char **matrix,	int x, int y, t_game *collectibles);
 
 // Defines
 // # define MAP_PATH "maps/map.ber"
