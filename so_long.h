@@ -71,7 +71,7 @@ typedef	struct s_game
 	void	*wall;
 	void	*floor;
 	t_data	data;
-	t_map		*map;
+	t_map		map;
 }	t_game;
 
 /*typedef struct s_matrix*/
@@ -95,7 +95,7 @@ int		size_column(char **matrix);
 int		number_of_elements(char **matrix, int collectibles);
 int		size_row(char **matrix);
 int		size_column(char **matrix);
-t_map	*limits(char **map);
+t_game	*limits(t_game *game);
 
 // Pathing
 

@@ -1,9 +1,9 @@
 #include "so_long.h"
 void	error_validation(char **matrix, t_player *player, t_game *game)
 {
-	t_map *limit = limits(matrix);
-	flood_fill(matrix, player->x, player->y, player_alloc(matrix), limit);
-	if (confirm_flood(matrix, limit) == -1)
+	game = limits(game);
+	flood_fill(matrix, player->x, player->y, player_alloc(matrix), &game->map);
+	if (confirm_flood(matrix, &game->map) == -1)
 		exit(EXIT_FAILURE);
 	window_init(game);
 }
