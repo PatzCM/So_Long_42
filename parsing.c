@@ -36,7 +36,7 @@ static int	size_map(char *file)
 char	**matrix(char *file)
 {
 	int			i;
-	t_matrix mtx;
+	t_map mtx;
 	
 	i = size_map(file);
 	mtx.fd = open(file, O_RDONLY);
@@ -85,9 +85,9 @@ void	validate_shape(char **matrix)
 				&& matrix[map.row][map.column] != 'P'
 				&& matrix[map.row][map.column] != 'E'
 				&& matrix[map.row][map.column] != 'C'
-				&& matrix[map.row][map.column] != '\n'
+				&& (matrix[map.row][map.column] != '\n'
 				|| matrix[map.row][map.column_end - 1] != '1'
-				|| matrix[map.row_end - 1][map.column] != '1')
+				|| matrix[map.row_end - 1][map.column] != '1'))
 				exit(0);
 			map.column++;
 		}

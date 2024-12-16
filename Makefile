@@ -7,7 +7,8 @@ INCLUDES = -I./include -Imlx
 
 # Source files
 
-SRCS = main.c parsing.c windows.c 
+SRCS = main.c parsing.c windows.c pathing.c counters.c \
+
 OBJS = $(SRCS:.c=.o)
 
 # Compiler and flags

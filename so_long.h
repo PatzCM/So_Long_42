@@ -12,6 +12,7 @@
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+# define WIN_TITLE "so_long"
 
 // Libraries 
 # include <stdio.h>
@@ -25,29 +26,28 @@
 # include <strings.h>
 # include <fcntl.h>
 
-typedef	struct s_game
-{
-	void	*mlx;
-	void	*window;
-	int		collectibles;
-	int		exit;
-	int		player;
-}	t_game;
+# define SIZE 128;
 
-typedef struct s_matrix
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		len;
+	int		endian;
+	int	tile_size;
+}				t_data;
+
+typedef struct s_map
 {
 	char	**matrix;
 	char	*line;
 	int		fd;
-}	t_matrix;
-
-typedef struct s_map
-{
 	int		row;
 	int		column;
 	int		row_end;
 	int		column_end;
-
+	int		height;
+	int		width;
 }	t_map;
 
 typedef struct s_player
@@ -56,12 +56,37 @@ typedef struct s_player
 	int	y;
 }	t_player;
 
+
+typedef	struct s_game
+{
+	void	*mlx;
+	void	*window;
+	void	*image;
+	int		collectibles;
+	int		exit;
+	int		player;
+	void	*player_img;
+	void	*collectible_img;
+	void	*exit_img;
+	void	*wall;
+	void	*floor;
+	t_data	data;
+	t_map		*map;
+}	t_game;
+
+/*typedef struct s_matrix*/
+/*{*/
+/*	char	**matrix;*/
+/*	char	*line;*/
+/*	int		fd;*/
+/*}	t_matrix;*/
+
 // Parsing Map
 //	int		read_map(t_game *game, char *path);
 //	int		check_map(t_game *game);
 //	int		check_surroundings(t_game *game, int x, int y);
 
-void	map_validation(char *file);
+void	map_validation(char *file, t_game *game);
 int		validate_ber(char *file);
 char	**matrix(char *file);
 void	validate_shape(char **matrix);
@@ -70,23 +95,31 @@ int		size_column(char **matrix);
 int		number_of_elements(char **matrix, int collectibles);
 int		size_row(char **matrix);
 int		size_column(char **matrix);
+t_map	*limits(char **map);
 
 // Pathing
 
 void	player_position(char **matrix, t_player *player);
-void	flood_fill(char **matrix,	int x, int y, t_player *player);
-int	confirm_flood(char **matrix, t_player *player);
+void	flood_fill(char **matrix,	int x, int y, t_player *player, t_map *limit);
+int	confirm_flood(char **matrix, t_map *limit);
 t_player	*player_alloc(char **mtx);
-void	error_validation(char **matrix, t_game *collectibles, t_player *player);
+void	error_validation(char **matrix, t_player *player, t_game *game);
+
 // Defines
 // # define MAP_PATH "maps/map.ber"
 //
 // Window
+void	init_values(t_game *game);
+void	window_init(t_game *game);
 // # define WIN_WIDTH 800
 // # define WIN_HEIGHT 600
-// # define WIN_TITLE "so_long"
 //
 // Images
+t_game	*data_init(t_game *game);
+
+void pixel_put(t_game *game, int x, int y, int color);
+void	image_render(t_game *game);
+
 // # define IMG_PATH "images/so_long.xpm"
 // # define IMG_SIZE 32
 // # define IMG_PLAYER "images/player.xpm"

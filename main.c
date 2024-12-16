@@ -2,29 +2,25 @@
 
 int	main(int argc, char **argv)
 {
-
+	t_game	game;
+	init_values(&game);
 	if (argc == 2)
-		map_validation(argv[1]);
+		map_validation(argv[1], &game);
+	ft_printf("Map validated\n");
 }
 
-void	map_validation(char *file)
+void	map_validation(char *file, t_game *game)
 {
-	t_matrix		*mtrx;
-	t_game			*col;
-		col = malloc(sizeof(t_game));
-		mtrx = malloc(sizeof(t_matrix));
+	t_map		*mtrx;
+	
+		mtrx = malloc(sizeof(t_map));
 		mtrx->matrix = matrix(file);
-		ft_printf("Matrix is allocated\n");
 		validate_ber(file);
-		ft_printf("Ber is validated\n");
 		validate_shape(mtrx->matrix);
-		ft_printf("Shape is validated\n");
-		col->collectibles = number_of_elements(mtrx->matrix, col->collectibles);
-		if (col->collectibles < 0)
+		game->collectibles = number_of_elements(mtrx->matrix, game->collectibles);
+		if (game->collectibles < 0)
 			exit(EXIT_FAILURE);
-		ft_printf("Number of elements is %d\n", col->collectibles);
-		error_validation(mtrx->matrix, col, player_alloc(mtrx->matrix));
-		/*ft_printf("Path is validated\n");*/
+		error_validation(mtrx->matrix, player_alloc(mtrx->matrix), game);
 }
 
 t_player	*player_alloc(char **mtx)
@@ -35,6 +31,24 @@ t_player	*player_alloc(char **mtx)
 		exit(EXIT_FAILURE);
 	player_position(mtx, player);
 	return (player);
-
 }
 
+void	init_values(t_game *game)
+{
+	game = malloc(sizeof(t_game));
+	game->mlx = NULL;
+	game->window = NULL;
+	game->image = NULL;
+	game->player_img = NULL;
+	game->collectibles = 0;
+	game->collectible_img = NULL;
+	game->exit = 0;
+	game->exit_img = NULL;
+	game->player = 0;
+	game->floor = NULL;
+	game->map = NULL;
+	game->wall = NULL;
+	game->data.tile_size = SIZE;
+	game->floor = malloc(11 * sizeof(void *));
+
+}

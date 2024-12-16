@@ -1,5 +1,14 @@
 #include "so_long.h"
-
+t_map	*limits(char **map)
+{
+	t_map *limit;
+	limit = malloc(sizeof(t_map));
+	if (!limit)
+		return (NULL);
+	limit->width = size_column(map);
+	limit->height = size_row(map);
+	return (limit);
+}
 int	size_row(char **matrix)
 {
 	int	i;
