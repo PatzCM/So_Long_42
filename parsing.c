@@ -36,22 +36,22 @@ static int	size_map(char *file)
 char	**matrix(char *file)
 {
 	int			i;
-	t_map mtx;
+	t_map mtrx;
 	
 	i = size_map(file);
-	mtx.fd = open(file, O_RDONLY);
-	mtx.matrix = (char **)malloc(sizeof(char *) * i);
+	mtrx.fd = open(file, O_RDONLY);
+	mtrx.matrix = (char **)malloc(sizeof(char *) * i);
 	i = 0;
-	mtx.line = get_next_line(mtx.fd);
-	while (mtx.line)
+	mtrx.line = get_next_line(mtrx.fd);
+	while (mtrx.line)
 	{
-		mtx.matrix[i] = mtx.line;
-		mtx.line = get_next_line(mtx.fd);
+		mtrx.matrix[i] = mtrx.line;
+		mtrx.line = get_next_line(mtrx.fd);
 		i++;
 	}
-	mtx.matrix[i] = NULL;
-	close(mtx.fd);
-	return (mtx.matrix);
+	mtrx.matrix[i] = NULL;
+	close(mtrx.fd);
+	return (mtrx.matrix);
 }
 
 int	validate_ber(char *file)

@@ -14,6 +14,7 @@ void	map_validation(char *file, t_game *game)
 	
 		/*mtrx = malloc(sizeof(t_map));*/
 		game->map.matrix = matrix(file);
+		game->map.mtx = matrix(file);
 		validate_ber(file);
 		validate_shape(game->map.matrix);
 		game->collectibles = number_of_elements(game->map.matrix, game->collectibles);
@@ -55,6 +56,8 @@ void	init_values(t_game *game)
 	game->floor = malloc(11 * sizeof(void *));
 	game->map.width = 0;
 	game->map.height = 0;
+	game->map.matrix = NULL;
+	game->map.mtx = NULL;
 
 
 }

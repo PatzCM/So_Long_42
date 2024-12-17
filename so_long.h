@@ -39,6 +39,7 @@ typedef struct	s_data {
 
 typedef struct s_map
 {
+	char	**mtx;
 	char	**matrix;
 	char	*line;
 	int		fd;
@@ -117,6 +118,7 @@ void	window_init(t_game *game);
 // Images
 t_game	*data_init(t_game *game);
 
+void	render_map(t_game *game);
 void pixel_put(t_game *game, int x, int y, int color);
 void	image_render(t_game *game);
 
