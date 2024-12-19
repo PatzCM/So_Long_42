@@ -2,6 +2,7 @@
 void	error_validation(char **matrix, t_player *player, t_game *game)
 {
 	game = limits(game);
+	game->player_p = *player;
 	flood_fill(matrix, player->x, player->y, player_alloc(matrix), &game->map);
 	if (confirm_flood(matrix, &game->map) == -1)
 		exit(EXIT_FAILURE);
@@ -66,7 +67,7 @@ int	confirm_flood(char **matrix, t_map *limit)
 		{
 			if (matrix[i][j] != '1' && matrix[i][j] != 'F' && matrix[i][j] != 'e' && matrix[i][j] != '0')
 			{
-				return (-1);
+				return (printf("Invalid path!\n"), -1);
 			}
 			j++;
 		}

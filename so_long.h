@@ -26,7 +26,7 @@
 # include <strings.h>
 # include <fcntl.h>
 
-# define SIZE 128;
+# define SIZE 64;
 
 typedef struct	s_data {
 	void	*img;
@@ -55,6 +55,8 @@ typedef struct s_player
 {
 	int	x;
 	int	y;
+	int x_end;
+	int y_end;
 }	t_player;
 
 
@@ -71,8 +73,18 @@ typedef	struct s_game
 	void	*exit_img;
 	void	*wall;
 	void	*floor;
+	void	*corner_top_left;
+	void	*corner_top_right;
+	void	*corner_bottom_left;
+	void	*corner_bottom_right;
+	void	*middle_top;
+	void	*middle_bottom;
+	void	*floor_dec;
+	void	*inac_exit;
+	int	moves;
 	t_data	data;
 	t_map		map;
+	t_player	player_p;
 }	t_game;
 
 /*typedef struct s_matrix*/
@@ -93,7 +105,7 @@ char	**matrix(char *file);
 void	validate_shape(char **matrix);
 int		size_row(char **matrix);
 int		size_column(char **matrix);
-int		number_of_elements(char **matrix, int collectibles);
+int		number_of_elements(char **matrix, int collectibles, t_game *game);
 int		size_row(char **matrix);
 int		size_column(char **matrix);
 t_game	*limits(t_game *game);
@@ -106,6 +118,13 @@ int	confirm_flood(char **matrix, t_map *limit);
 t_player	*player_alloc(char **mtx);
 void	error_validation(char **matrix, t_player *player, t_game *game);
 
+// Movement
+
+void move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+int	move(t_game *game, int to_x, int to_y);
 // Defines
 // # define MAP_PATH "maps/map.ber"
 //
@@ -128,21 +147,24 @@ void	image_render(t_game *game);
 // # define IMG_PLAYER_SIZE 32
 // # define IMG_WALL "images/wall.xpm"
 // # define IMG_WALL_SIZE 32
-//
+
 // Keys
-// # define KEY_ESC 53
-// # define KEY_W 13
-// # define KEY_A 0
-// # define KEY_S 1
-// # define KEY_D 2
-// # define KEY_UP 126
-//	# define KEY_DOWN 125
-//	# define KEY_LEFT 123
-//	# define KEY_RIGHT 124
-//	# define KEY_SPACE 49
-//	# define KEY_ENTER 36
-//	# define KEY_SHIFT 257
-//	# define KEY_CTRL 256
+
+int	key_code(int keycode, t_game *game);
+
+# define KEY_ESC 65307 
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_UP 65362
+ # define KEY_DOWN 65364
+ # define KEY_LEFT 65361
+ # define KEY_RIGHT 65363
+ # define KEY_SPACE 32
+ # define KEY_ENTER 65293
+ # define KEY_SHIFT 65505
+ # define KEY_CTRL 65507
 //
 //	// Errors
 //	# define ERR_MAP "Error\nInvalid map"

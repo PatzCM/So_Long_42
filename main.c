@@ -2,11 +2,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
-	init_values(&game);
+	t_game	*game;
+	game = NULL;
+	game = malloc(sizeof(t_game));
+	init_values(game);
 	if (argc == 2)
-		map_validation(argv[1], &game);
-	ft_printf("Map validated\n");
+		map_validation(argv[1], game);
+
 }
 
 void	map_validation(char *file, t_game *game)
@@ -17,7 +19,7 @@ void	map_validation(char *file, t_game *game)
 		game->map.mtx = matrix(file);
 		validate_ber(file);
 		validate_shape(game->map.matrix);
-		game->collectibles = number_of_elements(game->map.matrix, game->collectibles);
+		game->collectibles = number_of_elements(game->map.matrix, game->collectibles, game);
 		if (game->collectibles < 0)
 			exit(EXIT_FAILURE);
 		error_validation(game->map.matrix, player_alloc(game->map.matrix), game);
@@ -58,6 +60,4 @@ void	init_values(t_game *game)
 	game->map.height = 0;
 	game->map.matrix = NULL;
 	game->map.mtx = NULL;
-
-
 }

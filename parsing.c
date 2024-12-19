@@ -65,7 +65,7 @@ int	validate_ber(char *file)
 		&& file[i - 3] == 'b' && file[i - 4] == '.')
 		return (0);
 	else
-		return (NULL, write(1, "Error\n", 6));
+		return (ft_printf("File invalid!\n"));
 }
 
 void	validate_shape(char **matrix)
@@ -92,7 +92,10 @@ void	validate_shape(char **matrix)
 			map.column++;
 		}
 		if (map.column != map.column_end)
+		{
+			ft_printf("Error in map shape!\n");
 			exit(0);
+		}
 		map.row++;
 	}
 }
