@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   counters.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 13:37:52 by palexand          #+#    #+#             */
+/*   Updated: 2024/12/20 13:37:52 by palexand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "so_long.h"
+
 t_game	*limits(t_game *game)
 {
-
 	game->map.width = size_column(game->map.matrix);
 	game->map.height = size_row(game->map.matrix);
 	return (game);
 }
+
 int	size_row(char **matrix)
 {
 	int	i;
@@ -47,7 +59,8 @@ int	number_of_elements(char **matrix, int collectibles, t_game *game)
 		}
 		i++;
 	}
-	if (collectibles == 0 || game->player == 0 || game->exit == 0 || game->player > 1 || game->exit > 1)
+	if (collectibles == 0 || game->player == 0 || game->exit == 0
+		|| game->player > 1 || game->exit > 1)
 		return (ft_printf("Error in elements count!"), -1);
 	game->collectibles = collectibles;
 	return (collectibles);

@@ -36,8 +36,8 @@ static int	size_map(char *file)
 char	**matrix(char *file)
 {
 	int			i;
-	t_map mtrx;
-	
+	t_map		mtrx;
+
 	i = size_map(file);
 	mtrx.fd = open(file, O_RDONLY);
 	mtrx.matrix = (char **)malloc(sizeof(char *) * i);
@@ -88,14 +88,11 @@ void	validate_shape(char **matrix)
 				&& (matrix[map.row][map.column] != '\n'
 				|| matrix[map.row][map.column_end - 1] != '1'
 				|| matrix[map.row_end - 1][map.column] != '1'))
-				exit(0);
+				exit(ft_printf("Error in map shape!\n"));
 			map.column++;
 		}
 		if (map.column != map.column_end)
-		{
-			ft_printf("Error in map shape!\n");
-			exit(0);
-		}
+			exit(ft_printf("Error in map shape!\n"));
 		map.row++;
 	}
 }

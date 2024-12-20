@@ -1,33 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 13:38:39 by palexand          #+#    #+#             */
+/*   Updated: 2024/12/20 13:38:39 by palexand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 int	main(int argc, char **argv)
 {
 	t_game	*game;
+
 	game = NULL;
 	game = malloc(sizeof(t_game));
 	init_values(game);
 	if (argc == 2)
 		map_validation(argv[1], game);
-
 }
 
 void	map_validation(char *file, t_game *game)
 {
-	
-		/*mtrx = malloc(sizeof(t_map));*/
-		game->map.matrix = matrix(file);
-		game->map.mtx = matrix(file);
-		validate_ber(file);
-		validate_shape(game->map.matrix);
-		game->collectibles = number_of_elements(game->map.matrix, game->collectibles, game);
-		if (game->collectibles < 0)
-			exit(EXIT_FAILURE);
-		error_validation(game->map.matrix, player_alloc(game->map.matrix), game);
+	game->map.matrix = matrix(file);
+	game->map.mtx = matrix(file);
+	validate_ber(file);
+	validate_shape(game->map.matrix);
+	game->collectibles = number_of_elements(game->map.matrix,
+			game->collectibles, game);
+	if (game->collectibles < 0)
+		exit(EXIT_FAILURE);
+	error_validation(game->map.matrix, player_alloc(game->map.matrix), game);
 }
 
 t_player	*player_alloc(char **mtx)
 {
 	t_player	*player;
+
 	player = (t_player *)malloc(sizeof(t_player));
 	if (!player)
 		exit(EXIT_FAILURE);

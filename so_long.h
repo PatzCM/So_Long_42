@@ -80,7 +80,7 @@ typedef	struct s_game
 	void	*middle_top;
 	void	*middle_bottom;
 	void	*floor_dec;
-	void	*inac_exit;
+	void	*i_exit;
 	int	moves;
 	t_data	data;
 	t_map		map;
@@ -113,7 +113,7 @@ t_game	*limits(t_game *game);
 // Pathing
 
 void	player_position(char **matrix, t_player *player);
-void	flood_fill(char **matrix,	int x, int y, t_player *player, t_map *limit);
+void	flood_fill(char **matrix,	int x, int y, t_map *limit);
 int	confirm_flood(char **matrix, t_map *limit);
 t_player	*player_alloc(char **mtx);
 void	error_validation(char **matrix, t_player *player, t_game *game);

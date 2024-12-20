@@ -1,20 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pathing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/20 13:45:07 by palexand          #+#    #+#             */
+/*   Updated: 2024/12/20 13:45:07 by palexand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+
 void	error_validation(char **matrix, t_player *player, t_game *game)
 {
 	game = limits(game);
 	game->player_p = *player;
-	flood_fill(matrix, player->x, player->y, player_alloc(matrix), &game->map);
+	player_alloc(matrix);
+	flood_fill(matrix, player->x, player->y, &game->map);
 	if (confirm_flood(matrix, &game->map) == -1)
 		exit(EXIT_FAILURE);
 	window_init(game);
 }
 
-void	flood_fill(char **matrix,	int x, int y, t_player *player, t_map *limit)
+void	flood_fill(char **matrix,	int x, int y, t_map *limit)
 {
-	char			**maps = matrix;
-	if ((player->x == 0 || player->y == 0) || (player->x == limit->width || player->y == limit->height ) )
+	char			**maps;
+
+	maps = matrix;
+	if ((x == 0 || y == 0)
+		|| (x == limit->height || y == limit->width))
 		return ;
-	if (maps[x][y]== '1' || maps[x][y] == 'F' || maps[x][y] == 'e')
+	if (maps[x][y] == '1' || maps[x][y] == 'F' || maps[x][y] == 'e')
 		return ;
 	if (maps[x][y] == 'E')
 	{
@@ -22,20 +39,18 @@ void	flood_fill(char **matrix,	int x, int y, t_player *player, t_map *limit)
 		return ;
 	}
 	if (maps[x][y] != '1' && maps[x][y] != 'e')
-	{
 		maps[x][y] = 'F';
-	}
- flood_fill(matrix, x + 1, y, player, limit);
- flood_fill(matrix, x - 1, y, player, limit);
- flood_fill(matrix, x, y + 1, player, limit);
- flood_fill(matrix, x, y - 1, player, limit);
+	flood_fill(matrix, x + 1, y, limit);
+	flood_fill(matrix, x - 1, y, limit);
+	flood_fill(matrix, x, y + 1, limit);
+	flood_fill(matrix, x, y - 1, limit);
 }
 
 void	player_position(char **matrix, t_player *player)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (matrix[i])
 	{
@@ -58,17 +73,16 @@ int	confirm_flood(char **matrix, t_map *limit)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
 	while (matrix[i] && i < limit->height)
 	{
 		j = 0;
 		while (matrix[i][j] && j < limit->width)
 		{
-			if (matrix[i][j] != '1' && matrix[i][j] != 'F' && matrix[i][j] != 'e' && matrix[i][j] != '0')
-			{
-				return (printf("Invalid path!\n"), -1);
-			}
+			if (matrix[i][j] != '1' && matrix[i][j] != 'F'
+				&& matrix[i][j] != 'e' && matrix[i][j] != '0')
+				return (ft_printf("Invalid path!\n"), -1);
 			j++;
 		}
 		i++;
