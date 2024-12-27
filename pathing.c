@@ -16,11 +16,10 @@ void	error_validation(char **matrix, t_player *player, t_game *game)
 {
 	game = limits(game);
 	game->player_p = *player;
-	player_alloc(matrix);
+	/*player_alloc(matrix);*/
 	flood_fill(matrix, player->x, player->y, &game->map);
 	if (confirm_flood(matrix, &game->map) == -1)
 		exit(EXIT_FAILURE);
-	window_init(game);
 }
 
 void	flood_fill(char **matrix,	int x, int y, t_map *limit)

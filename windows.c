@@ -35,6 +35,9 @@ int	key_code(int keycode, t_game *game)
 	else if (keycode == KEY_D)
 		move_right(game);
 	else if (keycode == KEY_ESC)
+	{
+		free_stacks(game);
 		exit(EXIT_SUCCESS);
-	return (0);
+	}	
+return (0);
 }

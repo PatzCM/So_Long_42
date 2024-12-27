@@ -7,7 +7,7 @@ INCLUDES = -I./include -Imlx
 
 # Source files
 
-SRCS = main.c parsing.c windows.c pathing.c counters.c render.c utils.c\
+SRCS = main.c parsing.c windows.c pathing.c counters.c render.c utils.c free.c\
 
 OBJS = $(SRCS:.c=.o)
 

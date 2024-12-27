@@ -16,11 +16,15 @@ int	main(int argc, char **argv)
 {
 	t_game	*game;
 
+	if (argc != 2)
+		return 0;
 	game = NULL;
-	game = malloc(sizeof(t_game));
+	game = ft_calloc(sizeof(t_game), 1);
 	init_values(game);
-	if (argc == 2)
-		map_validation(argv[1], game);
+	map_validation(argv[1], game);
+	window_init(game);
+	printf("Destroying images\n");
+	/*free_stacks(game);*/
 }
 
 void	map_validation(char *file, t_game *game)
@@ -40,7 +44,7 @@ t_player	*player_alloc(char **mtx)
 {
 	t_player	*player;
 
-	player = (t_player *)malloc(sizeof(t_player));
+	player = (t_player *)ft_calloc(sizeof(t_player), 1);
 	if (!player)
 		exit(EXIT_FAILURE);
 	player_position(mtx, player);
@@ -49,7 +53,6 @@ t_player	*player_alloc(char **mtx)
 
 void	init_values(t_game *game)
 {
-	game = malloc(sizeof(t_game));
 	game->mlx = NULL;
 	game->window = NULL;
 	game->image = NULL;
@@ -67,9 +70,9 @@ void	init_values(t_game *game)
 	game->data.len = 0;
 	game->data.endian = 0;
 	game->data.tile_size = SIZE;
-	game->floor = malloc(11 * sizeof(void *));
 	game->map.width = 0;
 	game->map.height = 0;
 	game->map.matrix = NULL;
 	game->map.mtx = NULL;
+	
 }

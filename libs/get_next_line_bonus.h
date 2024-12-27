@@ -29,7 +29,7 @@
 char	*get_next_line(int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char *s1, char *s2);
-void	*ft_calloc(size_t nbytes, size_t size);
+/*void	*ft_calloc(size_t nbytes, size_t size);*/
 char	*left_trim(char *left_c);
 
 #endif

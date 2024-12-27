@@ -37,16 +37,16 @@ char	*left_trim(char *left_c)
 	return (temp);
 }
 
-void	*ft_calloc(size_t nbytes, size_t size)
-{
-	size_t			i;
-	unsigned char	*str;
-
-	str = malloc(nbytes * size);
-	if (!str)
-		return (0);
-	i = 0;
-	while (i < (nbytes * size))
-		str[i++] = '\0';
-	return (str);
-}
+/*void	*ft_calloc(size_t nbytes, size_t size)*/
+/*{*/
+/*	size_t			i;*/
+/*	unsigned char	*str;*/
+/**/
+/*	str = malloc(nbytes * size);*/
+/*	if (!str)*/
+/*		return (0);*/
+/*	i = 0;*/
+/*	while (i < (nbytes * size))*/
+/*		str[i++] = '\0';*/
+/*	return (str);*/
+/*}*/

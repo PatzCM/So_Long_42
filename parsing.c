@@ -23,6 +23,7 @@ static int	size_map(char *file)
 	if (fd == -1)
 		return (-1);
 	line = get_next_line(fd);
+	i++;
 	while (line)
 	{
 		free(line);
@@ -40,7 +41,7 @@ char	**matrix(char *file)
 
 	i = size_map(file);
 	mtrx.fd = open(file, O_RDONLY);
-	mtrx.matrix = (char **)malloc(sizeof(char *) * i);
+	mtrx.matrix = (char **)ft_calloc(sizeof(char *), i);
 	i = 0;
 	mtrx.line = get_next_line(mtrx.fd);
 	while (mtrx.line)

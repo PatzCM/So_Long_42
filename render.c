@@ -29,13 +29,7 @@ void	image_render(t_game *game)
 			&game->data.tile_size);
 	game->floor = mlx_xpm_file_to_image(game->mlx, "./img/floor.xpm",
 			&game->data.tile_size, &game->data.tile_size);
-	game->corner_top_left = mlx_xpm_file_to_image(game->mlx,
-			"./img/corner_top_left.xpm", &game->data.tile_size,
-			&game->data.tile_size);
-	game->corner_top_right = mlx_xpm_file_to_image(game->mlx,
-			"./img/corner_top_right.xpm", &game->data.tile_size,
-			&game->data.tile_size);
-	game->middle_top = mlx_xpm_file_to_image(game->mlx, "./img/middle_top.xpm",
+	game->wall = mlx_xpm_file_to_image(game->mlx, "./img/Water.xpm",
 			&game->data.tile_size, &game->data.tile_size);
 	game->exit_img = mlx_xpm_file_to_image(game->mlx, "./img/exit.xpm",
 			&game->data.tile_size, &game->data.tile_size);
@@ -43,9 +37,18 @@ void	image_render(t_game *game)
 			&game->data.tile_size, &game->data.tile_size);
 }
 
-t_game	*data_init(t_game *game)
+void	render_map2(t_game *game, int row, int column)
 {
-	return (game);
+	if (game->map.mtx[row][column] == '0')
+		mlx_put_image_to_window(game->mlx, game->window, game->floor,
+			column * game->data.tile_size, row * game->data.tile_size);
+	if (game->map.mtx[row][column] == 'E' && game->collectibles > 0)
+	{
+		mlx_put_image_to_window(game->mlx, game->window, game->i_exit,
+			column * game->data.tile_size, row * game->data.tile_size);
+		game->player_p.x_end = row;
+		game->player_p.y_end = column;
+	}
 }
 
 void	render_map(t_game *game)
@@ -53,11 +56,11 @@ void	render_map(t_game *game)
 	int	row;
 	int	column;
 
-	row = 0;
-	while (game->map.mtx[row++])
+	row = -1;
+	while (game->map.mtx[++row])
 	{
-		column = 0;
-		while (game->map.mtx[row][column++])
+		column = -1;
+		while (game->map.mtx[row][++column])
 		{
 			if (game->map.mtx[row][column] == '1')
 				mlx_put_image_to_window(game->mlx, game->window, game->wall,
@@ -70,16 +73,8 @@ void	render_map(t_game *game)
 				mlx_put_image_to_window(game->mlx, game->window,
 					game->collectible_img, column * game->data.tile_size,
 					row * game->data.tile_size);
-			if (game->map.mtx[row][column] == '0')
-				mlx_put_image_to_window(game->mlx, game->window, game->floor,
-					column * game->data.tile_size, row * game->data.tile_size);
-			if (game->map.mtx[row][column] == 'E' && game->collectibles > 0)
-			{
-				mlx_put_image_to_window(game->mlx, game->window, game->i_exit,
-					column * game->data.tile_size, row * game->data.tile_size);
-				game->player_p.x_end = row;
-				game->player_p.y_end = column;
-			}
+			else
+				render_map2(game, row, column);
 		}
 	}
 }
