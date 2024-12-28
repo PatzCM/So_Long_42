@@ -23,19 +23,21 @@ int	main(int argc, char **argv)
 	init_values(game);
 	map_validation(argv[1], game);
 	window_init(game);
-	printf("Destroying images\n");
 }
 
 void	map_validation(char *file, t_game *game)
 {
+	if (validate_ber(file) == -1)
+		return(ft_printf((RED"\n\
+ERROR ON FILE NAME\n\n\
+"RESET)), exit_game(game, 0));
 	game->map.matrix = matrix(file);
 	game->map.mtx = matrix(file);
-	validate_ber(file);
-	validate_shape(game->map.matrix);
+validate_shape(game->map.matrix, game);
 	game->collectibles = number_of_elements(game->map.matrix,
 			game->collectibles, game);
 	if (game->collectibles < 0)
-		exit(EXIT_FAILURE);
+		exit_game(game, 3);
 	error_validation(game->map.matrix, player_alloc(game->map.matrix), game);
 }
 

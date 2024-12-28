@@ -57,19 +57,19 @@ char	**matrix(char *file)
 
 int	validate_ber(char *file)
 {
-	int	i;
+	size_t	i;
 
 	i = ft_strlen(file);
-	if (i < 4)
+	if (i <= 4)
 		return (-1);
 	if (file[i - 1] == 'r' && file[i - 2] == 'e'
-		&& file[i - 3] == 'b' && file[i - 4] == '.')
+		&& file[i - 3] == 'b' && file[i - 4] == '.' && file[i - 5] != '/')
 		return (0);
 	else
-		return (ft_printf("File invalid!\n"));
+		return (-1);
 }
 
-void	validate_shape(char **matrix)
+void	validate_shape(char **matrix, t_game *game)
 {
 	t_map	map;
 
@@ -81,19 +81,19 @@ void	validate_shape(char **matrix)
 		map.column = 0;
 		while (matrix[map.row][map.column] && map.column < map.column_end)
 		{
-			if (matrix[map.row][map.column] != '1'
+			if ((matrix[map.row][map.column] != '1'
 				&& matrix[map.row][map.column] != '0'
 				&& matrix[map.row][map.column] != 'P'
 				&& matrix[map.row][map.column] != 'E'
 				&& matrix[map.row][map.column] != 'C'
-				&& (matrix[map.row][map.column] != '\n'
-				|| matrix[map.row][map.column_end - 1] != '1'
+				&& matrix[map.row][map.column] != '\n') 
+				||(matrix[map.row][map.column_end - 1] != '1'
 				|| matrix[map.row_end - 1][map.column] != '1'))
-				exit(ft_printf("Error in map shape!\n"));
+					exit_game(game, 2);
 			map.column++;
 		}
 		if (map.column != map.column_end)
-			exit(ft_printf("Error in map shape!\n"));
+			exit_game(game, 2);
 		map.row++;
 	}
 }

@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "mlx/mlx.h"
 #include "so_long.h"
 
 void	window_init(t_game *game)
@@ -35,9 +36,6 @@ int	key_code(int keycode, t_game *game)
 	else if (keycode == KEY_D)
 		move_right(game);
 	else if (keycode == KEY_ESC)
-	{
-		free_stacks(game);
-		exit(EXIT_SUCCESS);
-	}
+		exit_game(game, 0);
 	return (0);
 }

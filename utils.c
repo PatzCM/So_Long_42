@@ -52,10 +52,7 @@ int	move(t_game *game, int to_x, int to_y)
 			game->exit_img, game->player_p.y_end * 64,
 			game->player_p.x_end * 64);
 	if (game->map.mtx[to_x][to_y] == 'E' && game->collectibles == 0)
-	{
-		ft_printf("You win!\n");
-		exit(EXIT_SUCCESS);
-	}
+		exit_game(game, 1);
 	if (game->map.mtx[to_x][to_y] == 'C' && game->collectibles-- > -1)
 	{
 		game->map.mtx[to_x][to_y] = '0';

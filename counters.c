@@ -31,11 +31,21 @@ int	size_row(char **matrix)
 int	size_column(char **matrix)
 {
 	int	i;
+	int j;
+	int biggest;
 
+	biggest = 0;
 	i = 0;
-	while (matrix[0][i] != '\n')
+	while (matrix[i])
+	{
+		j = 0;
+		while (matrix[i][j] != '\n')
+			j++;
+		if (j > biggest)
+			biggest = j;
 		i++;
-	return (i);
+	}
+	return (biggest);
 }
 
 int	number_of_elements(char **matrix, int collectibles, t_game *game)

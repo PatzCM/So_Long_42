@@ -16,8 +16,9 @@ void	error_validation(char **matrix, t_player *player, t_game *game)
 	game = limits(game);
 	game->player_p = *player;
 	flood_fill(matrix, player->x, player->y, &game->map);
+	free(player);
 	if ((confirm_flood(matrix, &game->map)) == -1)
-		exit(EXIT_FAILURE);
+		exit_game(game, 0);
 }
 
 void	flood_fill(char **matrix,	int x, int y, t_map *limit)

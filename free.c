@@ -12,15 +12,47 @@
 
 #include "so_long.h"
 
+void exit_game(t_game *game, int status)
+{
+	if (status == 1)
+	{
+			ft_printf(GREEN"\n\
+██████████████████████████████████████████████████████████████████\n\
+██                                                              ██\n\
+██  ███  ███  ██████  ██    ██     ██      ██ ██ ██    ██   ██  ██\n\
+██   ██  ██  ██    ██ ██    ██     ██      ██ ██ ███   ██   ██  ██\n\
+██    ████   █      █ ██    ██     ██  ██  ██ ██ ██ ██ ██   ██  ██\n\
+██     ██    ██    ██ ██    ██     ██ ████ ██ ██ ██  ████       ██\n\
+██     ██     ██████    ████        ███  ███  ██ ██   ███   ██  ██\n\
+██                                                              ██\n\
+██████████████████████████████████████████████████████████████████\n\n\
+"RESET);
+	}
+	if (status == 2)
+		ft_printf(RED"\n ERROR VALIDATING MAP\n\n"RESET);
+	if (status == 3)
+		ft_printf(RED"\n ERROR COLLECTIBLES\n\n"RESET);
+	else
+		ft_printf(RED"\nEXITING GAME\n"RESET);
+
+	free_stacks(game);
+	exit(EXIT_SUCCESS);
+}
 void	free_stacks(t_game *game)
 {
 	printf("Destroying stacks\n");
-	destroy_image(game);
-	free_map(game);
-	free(game->map.matrix);
-	free(game->map.mtx);
-	free(game->mlx);
-	free(game);
+	if (game->map.matrix && game->map.mtx)
+	{
+		free_map(game);
+		free(game->map.matrix);
+		free(game->map.mtx);
+	}
+	if (game->mlx)
+	{
+		destroy_image(game);
+		free(game->mlx);}
+	if (game)
+		free(game);
 }
 
 void	free_map(t_game *game)
@@ -52,4 +84,5 @@ void	destroy_image(t_game *game)
 	mlx_destroy_image(game->mlx, game->i_exit);
 	mlx_destroy_window(game->mlx, game->window);
 	mlx_destroy_display(game->mlx);
+	(void)game;
 }

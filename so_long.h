@@ -14,6 +14,11 @@
 # define SO_LONG_H
 # define WIN_TITLE "so_long"
 # define SIZE 64
+# define GREEN				"\033[0;32m"
+# define RED 				"\033[1;31m"
+# define GREY 				"\033[0;90m"
+# define CYAN				"\033[1;96m"
+# define RESET 				"\033[0m"
 
 // Libraries 
 # include <stdio.h>
@@ -91,12 +96,13 @@ t_player	*player_alloc(char **mtx);
 void		free_stacks(t_game *game);
 void		destroy_image(t_game *game);
 void		free_map(t_game *game);
+void		exit_game(t_game *game, int status);
 // Parsing Map
 
 void		map_validation(char *file, t_game *game);
 int			validate_ber(char *file);
 char		**matrix(char *file);
-void		validate_shape(char **matrix);
+void		validate_shape(char **matrix, t_game *game);
 int			size_row(char **matrix);
 int			size_column(char **matrix);
 int			number_of_elements(char **matrix, int collectibles, t_game *game);
