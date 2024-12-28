@@ -17,14 +17,13 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc != 2)
-		return 0;
+		return (0);
 	game = NULL;
 	game = ft_calloc(sizeof(t_game), 1);
 	init_values(game);
 	map_validation(argv[1], game);
 	window_init(game);
 	printf("Destroying images\n");
-	/*free_stacks(game);*/
 }
 
 void	map_validation(char *file, t_game *game)
@@ -74,5 +73,4 @@ void	init_values(t_game *game)
 	game->map.height = 0;
 	game->map.matrix = NULL;
 	game->map.mtx = NULL;
-	
 }

@@ -5,20 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 13:45:07 by palexand          #+#    #+#             */
-/*   Updated: 2024/12/20 13:45:07 by palexand         ###   ########.fr       */
+/*   Created: 2024/12/28 01:14:10 by palexand          #+#    #+#             */
+/*   Updated: 2024/12/28 01:14:10 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "so_long.h"
 
 void	error_validation(char **matrix, t_player *player, t_game *game)
 {
 	game = limits(game);
 	game->player_p = *player;
-	/*player_alloc(matrix);*/
 	flood_fill(matrix, player->x, player->y, &game->map);
-	if (confirm_flood(matrix, &game->map) == -1)
+	if ((confirm_flood(matrix, &game->map)) == -1)
 		exit(EXIT_FAILURE);
 }
 

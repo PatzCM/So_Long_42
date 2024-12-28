@@ -38,6 +38,6 @@ int	key_code(int keycode, t_game *game)
 	{
 		free_stacks(game);
 		exit(EXIT_SUCCESS);
-	}	
-return (0);
+	}
+	return (0);
 }

@@ -88,9 +88,9 @@ typedef struct s_game
 
 // Initialization & Memory
 t_player	*player_alloc(char **mtx);
-void			free_stacks(t_game *game);
-void	destroy_image(t_game *game);
-void	free_map(t_game *game);
+void		free_stacks(t_game *game);
+void		destroy_image(t_game *game);
+void		free_map(t_game *game);
 // Parsing Map
 
 void		map_validation(char *file, t_game *game);
