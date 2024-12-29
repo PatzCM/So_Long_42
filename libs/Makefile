@@ -9,6 +9,12 @@
 #    Updated: 2024/11/06 17:38:43 by palexand         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+# Colors
+NO_COLOR = \033[0;39m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
+BLUE = \033[0;94m
+CYAN = \033[0;96m
 
 # Vari/alias that define the files that will be compilled together
 RM = rm -f
@@ -33,17 +39,25 @@ NAME = libft.a
 #Name is the name of the file. .a is static library.
 # all is the basic rule of makefile whenever there's no rule input.(make )
 all: ${NAME}
+	@echo "$(GREEN)All libraries compilation done!$(NO_COLOR)"
+
 #Name calls the objects and then compiles (ar rc) calling the name of the file and objects to compile.
 ${NAME}: ${OBJS}  
 	ar rcs ${NAME} ${OBJS} 
+
 #Delete the .o files
 clean:
 	${RM} ${OBJS} 
+	@echo "$(YELLOW)Cleaning libraries completed!$(NO_COLOR)"
+
 #Delete the .o file with clean + remove .a file with $NAME.
 fclean: clean
 	${RM} ${NAME} 
-#Clean everything (.o & .a)
+	@echo "$(YELLOW)Cleaning libs .a and .o completed!$(NO_COLOR)"
+
+#Clean everything (.o & .a) and recompile
 re: fclean all
+	@echo "$(GREEN)Recompilation done!$(NO_COLOR)"
 
 #To not allow overlap of rules
 .PHONY: re fclean clean all
@@ -53,5 +67,6 @@ ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 BONUS_OBJS = ${BONUS:.c=.o}
 bonus: ${BONUS_OBJS} ${OBJS}
 	ar rcs ${NAME} ${OBJS} ${BONUS_OBJS}
+	@echo "$(GREEN)All bonus libraries compilation done!$(NO_COLOR)"
 
 .PHONY: bonus

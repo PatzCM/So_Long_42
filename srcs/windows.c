@@ -9,9 +9,7 @@
 /*   Updated: 2024/12/20 13:36:20 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "mlx/mlx.h"
-#include "so_long.h"
+#include "../inc/so_long.h"
 
 void	window_init(t_game *game)
 {

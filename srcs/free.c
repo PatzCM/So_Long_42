@@ -9,14 +9,13 @@
 /*   Updated: 2024/12/28 01:15:42 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../inc/so_long.h"
 
-#include "so_long.h"
-
-void exit_game(t_game *game, int status)
+void	exit_game(t_game *game, int status)
 {
 	if (status == 1)
 	{
-			ft_printf(GREEN"\n\
+		ft_printf(GREEN"\n\
 ██████████████████████████████████████████████████████████████████\n\
 ██                                                              ██\n\
 ██  ███  ███  ██████  ██    ██     ██      ██ ██ ██    ██   ██  ██\n\
@@ -34,10 +33,10 @@ void exit_game(t_game *game, int status)
 		ft_printf(RED"\n ERROR COLLECTIBLES\n\n"RESET);
 	else
 		ft_printf(RED"\nEXITING GAME\n"RESET);
-
 	free_stacks(game);
 	exit(EXIT_SUCCESS);
 }
+
 void	free_stacks(t_game *game)
 {
 	printf("Destroying stacks\n");
@@ -50,7 +49,8 @@ void	free_stacks(t_game *game)
 	if (game->mlx)
 	{
 		destroy_image(game);
-		free(game->mlx);}
+		free(game->mlx);
+	}
 	if (game)
 		free(game);
 }

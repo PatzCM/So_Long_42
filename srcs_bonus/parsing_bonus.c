@@ -9,8 +9,7 @@
 /*   Updated: 2024/12/15 00:07:19 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "so_long.h"
+#include "../inc/so_long_bonus.h"
 
 static int	size_map(char *file)
 {
@@ -86,10 +85,10 @@ void	validate_shape(char **matrix, t_game *game)
 				&& matrix[map.row][map.column] != 'P'
 				&& matrix[map.row][map.column] != 'E'
 				&& matrix[map.row][map.column] != 'C'
-				&& matrix[map.row][map.column] != '\n') 
-				||(matrix[map.row][map.column_end - 1] != '1'
+				&& matrix[map.row][map.column] != '\n')
+				|| (matrix[map.row][map.column_end - 1] != '1'
 				|| matrix[map.row_end - 1][map.column] != '1'))
-					exit_game(game, 2);
+				exit_game(game, 2);
 			map.column++;
 		}
 		if (map.column != map.column_end)

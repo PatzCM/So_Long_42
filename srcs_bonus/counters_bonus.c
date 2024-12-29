@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/20 13:37:52 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "../inc/so_long_bonus.h"
 
 t_game	*limits(t_game *game)
 {
@@ -31,8 +31,8 @@ int	size_row(char **matrix)
 int	size_column(char **matrix)
 {
 	int	i;
-	int j;
-	int biggest;
+	int	j;
+	int	biggest;
 
 	biggest = 0;
 	i = 0;

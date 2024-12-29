@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -28,12 +28,12 @@ int	main(int argc, char **argv)
 void	map_validation(char *file, t_game *game)
 {
 	if (validate_ber(file) == -1)
-		return(ft_printf((RED"\n\
+		return (ft_printf((RED"\n\
 ERROR ON FILE NAME\n\n\
 "RESET)), exit_game(game, 0));
 	game->map.matrix = matrix(file);
 	game->map.mtx = matrix(file);
-validate_shape(game->map.matrix, game);
+	validate_shape(game->map.matrix, game);
 	game->collectibles = number_of_elements(game->map.matrix,
 			game->collectibles, game);
 	if (game->collectibles < 0)
@@ -65,7 +65,6 @@ void	init_values(t_game *game)
 	game->player = 0;
 	game->floor = NULL;
 	game->wall = NULL;
-	game->data.img = NULL;
 	game->data.addr = NULL;
 	game->data.bpp = 0;
 	game->data.len = 0;

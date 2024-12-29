@@ -19,22 +19,27 @@
 # define GREY 				"\033[0;90m"
 # define CYAN				"\033[1;96m"
 # define RESET 				"\033[0m"
-
+# define FRONT 0
+# define BACK 1
+# define LEFT 2
+# define RIGHT 3
 // Libraries 
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include "mlx/mlx.h"
-# include "libs/ft_printf.h"
-# include "libs/get_next_line_bonus.h"
-# include "libs/libft.h"
+# include "../mlx/mlx.h"
+# include "../libs/ft_printf.h"
+# include "../libs/get_next_line_bonus.h"
+# include "../libs/libft.h"
 # include <strings.h>
 # include <fcntl.h>
 
 typedef struct s_data
 {
-	void	*img;
+	void	*xpm_ptr;
+	void	*mlx_ptr;
+	void	*mlx_win;
 	char	*addr;
 	int		bpp;
 	int		len;
@@ -64,6 +69,14 @@ typedef struct s_player
 	int	y_end;
 }	t_player;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		h;
+	int		w;
+}	t_img;
+
 typedef struct s_game
 {
 	t_player	player_p;
@@ -86,10 +99,41 @@ typedef struct s_game
 	void		*middle_bottom;
 	void		*floor_dec;
 	void		*i_exit;
+	void		*enemy;
+	void		*player_left;
+	void		*player_right;
+	void		*player_back;
+	int			player_sprite;
 	int			moves;
-	t_data		data;
+	t_img		img;
+	t_data	data;
 	t_map		map;
 }	t_game;
+
+/*typedef struct s_animation {*/
+/*	t_list *	frames;*/
+/*	int		width;*/
+/*	int		height;*/
+/*	int		delay;			// How many fps it takes to change animation*/
+/*	int		_tmp_delay;		// Delay Iterator*/
+/*	int		current_frame_num;	// Which frame is selected*/
+/*	long int	last_updated;		// When was the last update*/
+/*	long int	frame_count;		// The frame count*/
+/*	char entity;*/
+/*}		t_animation;*/
+
+
+
+/*typedef struct s_sprite {*/
+/*	t_list	* animations;*/
+/*	char	* name;*/
+/*	char	* file_path;*/
+/*	t_img	sprite_img;*/
+/*	int	width;*/
+/*	int	height;*/
+/*}		t_sprite;*/
+
+
 
 // Initialization & Memory
 t_player	*player_alloc(char **mtx);
@@ -123,7 +167,7 @@ void		move_up(t_game *game);
 void		move_down(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
-int			move(t_game *game, int to_x, int to_y);
+int			move(t_game *game, int to_x, int to_y, int player_sprite);
 // Defines
 // # define MAP_PATH "maps/map.ber"
 //
@@ -136,8 +180,9 @@ t_game		*data_init(t_game *game);
 
 void		render_map(t_game *game);
 void		pixel_put(t_game *game, int x, int y, int color);
-void		image_render(t_game *game);
+void		image_render(t_game *game, char *file, int x, int y);
 void		render_map2(t_game *game, int row, int column);
+void		render_player(t_game *game);
 
 // Keys
 

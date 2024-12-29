@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../inc/so_long.h"
 
 void	pixel_put(t_game *game, int x, int y, int color)
 {
@@ -29,7 +29,7 @@ void	image_render(t_game *game)
 			&game->data.tile_size);
 	game->floor = mlx_xpm_file_to_image(game->mlx, "./img/floor.xpm",
 			&game->data.tile_size, &game->data.tile_size);
-	game->wall = mlx_xpm_file_to_image(game->mlx, "./img/Water.xpm",
+	game->wall = mlx_xpm_file_to_image(game->mlx, "./img/wall.xpm",
 			&game->data.tile_size, &game->data.tile_size);
 	game->exit_img = mlx_xpm_file_to_image(game->mlx, "./img/exit.xpm",
 			&game->data.tile_size, &game->data.tile_size);

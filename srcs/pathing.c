@@ -9,7 +9,7 @@
 /*   Updated: 2024/12/28 01:14:10 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h"
+#include "../inc/so_long.h"
 
 void	error_validation(char **matrix, t_player *player, t_game *game)
 {

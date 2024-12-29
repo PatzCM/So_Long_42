@@ -9,14 +9,13 @@
 /*   Updated: 2024/12/20 13:35:27 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "so_long.h"
+#include "../inc/so_long_bonus.h"
 
 void	move_up(t_game *game)
 {
 	if (game->map.mtx[game->player_p.x - 1][game->player_p.y] == '1')
 		return ;
-	move(game, game->player_p.x - 1, game->player_p.y);
+	move(game, game->player_p.x - 1, game->player_p.y, BACK);
 }
 
 void	move_left(t_game *game)
@@ -24,7 +23,7 @@ void	move_left(t_game *game)
 	if (game->map.mtx[game->player_p.x][game->player_p.y - 1] == '1')
 		return ;
 	else
-		move(game, game->player_p.x, game->player_p.y - 1);
+		move(game, game->player_p.x, game->player_p.y - 1, LEFT);
 }
 
 void	move_down(t_game *game)
@@ -32,7 +31,7 @@ void	move_down(t_game *game)
 	if (game->map.mtx[game->player_p.x + 1][game->player_p.y] == '1')
 		return ;
 	else
-		move(game, game->player_p.x + 1, game->player_p.y);
+		move(game, game->player_p.x + 1, game->player_p.y, FRONT);
 }
 
 void	move_right(t_game *game)
@@ -40,13 +39,14 @@ void	move_right(t_game *game)
 	if (game->map.mtx[game->player_p.x][game->player_p.y + 1] == '1')
 		return ;
 	else
-		move(game, game->player_p.x, game->player_p.y + 1);
+		move(game, game->player_p.x, game->player_p.y + 1, RIGHT);
 }
 
-int	move(t_game *game, int to_x, int to_y)
+int	move(t_game *game, int to_x, int to_y, int player_sprite)
 {
 	static int	moves = 1;
-
+	
+	game->player_sprite = player_sprite;
 	if (game->collectibles == 0)
 		mlx_put_image_to_window(game->mlx, game->window,
 			game->exit_img, game->player_p.y_end * 64,
@@ -64,7 +64,8 @@ int	move(t_game *game, int to_x, int to_y)
 		game->floor, game->player_p.y * 64, game->player_p.x * 64);
 	game->player_p.x = to_x;
 	game->player_p.y = to_y;
-	mlx_put_image_to_window(game->mlx, game->window, game->player_img,
-		game->player_p.y * 64, game->player_p.x * 64);
+	render_player(game);
 	return (ft_printf("Number of moves[%d]\n", moves++), 0);
 }
+
+
