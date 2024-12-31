@@ -33,6 +33,11 @@ ERROR ON FILE NAME\n\n\
 "RESET)), exit_game(game, 0));
 	game->map.matrix = matrix(file);
 	game->map.mtx = matrix(file);
+	int i = -1;
+	while(game->map.matrix[++i])
+	{
+		printf("%s \n", game->map.matrix[i]);
+	}
 	validate_shape(game->map.matrix, game);
 	game->collectibles = number_of_elements(game->map.matrix,
 			game->collectibles, game);
@@ -65,13 +70,10 @@ void	init_values(t_game *game)
 	game->player = 0;
 	game->floor = NULL;
 	game->wall = NULL;
-	game->data.addr = NULL;
-	game->data.bpp = 0;
-	game->data.len = 0;
-	game->data.endian = 0;
 	game->data.tile_size = SIZE;
 	game->map.width = 0;
 	game->map.height = 0;
 	game->map.matrix = NULL;
 	game->map.mtx = NULL;
+	game->img.xpm = NULL;
 }

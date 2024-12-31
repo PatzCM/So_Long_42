@@ -37,13 +37,7 @@
 
 typedef struct s_data
 {
-	void	*xpm_ptr;
-	void	*mlx_ptr;
-	void	*mlx_win;
-	char	*addr;
-	int		bpp;
 	int		len;
-	int		endian;
 	int		tile_size;
 }				t_data;
 
@@ -71,7 +65,7 @@ typedef struct s_player
 
 typedef struct s_img
 {
-	void	*mlx_img;
+	void	*xpm;
 	char	*addr;
 	int		h;
 	int		w;
@@ -110,37 +104,13 @@ typedef struct s_game
 	t_map		map;
 }	t_game;
 
-/*typedef struct s_animation {*/
-/*	t_list *	frames;*/
-/*	int		width;*/
-/*	int		height;*/
-/*	int		delay;			// How many fps it takes to change animation*/
-/*	int		_tmp_delay;		// Delay Iterator*/
-/*	int		current_frame_num;	// Which frame is selected*/
-/*	long int	last_updated;		// When was the last update*/
-/*	long int	frame_count;		// The frame count*/
-/*	char entity;*/
-/*}		t_animation;*/
-
-
-
-/*typedef struct s_sprite {*/
-/*	t_list	* animations;*/
-/*	char	* name;*/
-/*	char	* file_path;*/
-/*	t_img	sprite_img;*/
-/*	int	width;*/
-/*	int	height;*/
-/*}		t_sprite;*/
-
-
-
 // Initialization & Memory
 t_player	*player_alloc(char **mtx);
 void		free_stacks(t_game *game);
 void		destroy_image(t_game *game);
 void		free_map(t_game *game);
 void		exit_game(t_game *game, int status);
+
 // Parsing Map
 
 void		map_validation(char *file, t_game *game);
@@ -168,9 +138,19 @@ void		move_down(t_game *game);
 void		move_left(t_game *game);
 void		move_right(t_game *game);
 int			move(t_game *game, int to_x, int to_y, int player_sprite);
+
+// Animations
+void	ini_anim(t_game *game, int row, int column);
+void	aw_choice(t_game *game, int player_sprite);
+void	aw_up(t_game *game);
+void	aw_down(t_game *game);
+void	aw_left(t_game *game);
+void	aw_right(t_game *game);
+
 // Defines
 // # define MAP_PATH "maps/map.ber"
-//
+
+
 // Window
 void		init_values(t_game *game);
 void		window_init(t_game *game);

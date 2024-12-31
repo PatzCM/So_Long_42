@@ -52,6 +52,7 @@ SRCS_BONUS = srcs_bonus/main_bonus.c\
 						 srcs_bonus/render_bonus.c\
 						 srcs_bonus/utils_bonus.c\
 						 srcs_bonus/free_bonus.c\
+						 srcs_bonus/move_animation.c\
 
 OBJS = $(SRCS:.c=.o)
 B_OBJS = $(SRCS_BONUS:.c=.o)
@@ -59,7 +60,7 @@ B_OBJS = $(SRCS_BONUS:.c=.o)
 # Compiler and flags
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror  
-LIBS = libs/libft.a
+LIBS = ./libs/libft.a
 RM = rm -f
 AR = ar rcs
 
@@ -67,6 +68,8 @@ AR = ar rcs
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # Rules
+
+all: deps $(NAME)
 
 deps:
 	make -C ./libs
@@ -76,8 +79,6 @@ $(NAME): $(OBJS)
 	$(MAKE) -C mlx
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBS) -o $(NAME)
 	@echo	"$(CYAN)$$HEADER \n $(GREEN)Compilation done!$(NO_COLOR)"
-
-all: deps $(NAME)
 
 clean:
 	rm -f $(OBJS) $(B_OBJS)
@@ -95,6 +96,7 @@ re: fclean all
 
 bonus: $(B_OBJS)
 	$(MAKE) -C mlx
+	$(MAKE) -C ./libs
 	$(CC) $(CFLAGS) $(B_OBJS) $(MLX_FLAGS) $(LIBS) -o $(BONUS)
 	@echo	"$(CYAN)$$HEADER \n $(GREEN)BONUS READY!$(NO_COLOR)" 
 

@@ -14,7 +14,6 @@
 void	window_init(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->data.mlx_ptr = game->mlx;
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			(game->map.height * 64), WIN_TITLE);
 	render_map(game);
