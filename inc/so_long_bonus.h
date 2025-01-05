@@ -66,7 +66,11 @@ typedef struct s_player
 typedef struct s_img
 {
 	void	*xpm;
+	void	*img;
 	char	*addr;
+	int		bpp;
+	int		llen;
+	int		endian;
 	int		h;
 	int		w;
 }	t_img;
@@ -85,12 +89,6 @@ typedef struct s_game
 	void		*exit_img;
 	void		*wall;
 	void		*floor;
-	void		*corner_top_left;
-	void		*corner_top_right;
-	void		*corner_bottom_left;
-	void		*corner_bottom_right;
-	void		*middle_top;
-	void		*middle_bottom;
 	void		*floor_dec;
 	void		*i_exit;
 	void		*enemy;
@@ -102,6 +100,7 @@ typedef struct s_game
 	t_img		img;
 	t_data	data;
 	t_map		map;
+	t_img		bg;
 }	t_game;
 
 // Initialization & Memory
@@ -147,6 +146,13 @@ void	aw_down(t_game *game);
 void	aw_left(t_game *game);
 void	aw_right(t_game *game);
 
+// Wallpapers
+
+void	graphical(t_game *game);
+void	render_bg(t_img *buffer, t_game *game, int y, int x);
+void	init_pixel(t_game *game);
+void	image_render(t_game *game, t_img *buffer, char *file, int x, int y);
+
 // Defines
 // # define MAP_PATH "maps/map.ber"
 
@@ -160,10 +166,11 @@ t_game		*data_init(t_game *game);
 
 void		render_map(t_game *game);
 void		pixel_put(t_game *game, int x, int y, int color);
-void		image_render(t_game *game, char *file, int x, int y);
+/*void		image_render(t_game *game, char *file, int x, int y);*/
 void		render_map2(t_game *game, int row, int column);
 void		render_player(t_game *game);
-
+void		rand_collectibles(t_game *game, int row, int column);
+void		rand_wall(t_game *game, int row, int column);
 // Keys
 
 int			key_code(int keycode, t_game *game);

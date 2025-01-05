@@ -16,7 +16,9 @@ void	window_init(t_game *game)
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			(game->map.height * 64), WIN_TITLE);
+	init_pixel(game);
 	render_map(game);
+	graphical(game);
 	mlx_key_hook(game->window, key_code, game);
 	mlx_loop(game->mlx);
 }
@@ -36,3 +38,11 @@ int	key_code(int keycode, t_game *game)
 		exit_game(game, 0);
 	return (0);
 }
+
+void	init_pixel(t_game *game)
+{
+	game->bg.img = mlx_new_image(game->mlx, game->map.width * game->data.tile_size, game->map.height * game->data.tile_size);
+	game->bg.addr = mlx_get_data_addr(game->bg.img,
+			&game->bg.bpp, &game->bg.llen, &game->bg.endian);
+}
+
