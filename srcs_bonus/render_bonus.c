@@ -203,18 +203,22 @@ void rand_wall(t_game *game, int row, int column)
 		image_render(game, &game->bg, "./img/wall1_0.xpm", column * game->data.tile_size, row * game->data.tile_size);
 	else if (row == game->map.height - 1 && column == 0)
 		image_render(game, &game->bg, "./img/wall1_1.xpm", column * game->data.tile_size, row * game->data.tile_size);
-	/*else if (row > 0 && row < game->map.height - 1 && column == 0)*/
-	/*	image_render(game, &game->bg, "./img/wall2_0.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (row > 0 && row < game->map.height - 1 && column == game->map.width - 1)*/
-	/*	image_render(game, &game->bg, "./img/wall2_1.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (row > 0 && row < game->map.height - 1 && column > 0 && column < game->map.width - 1)*/
-	/*	image_render(game, &game->bg, "./img/wall3.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (i == 0)*/
-	/*	image_render(game, &game->bg, "./img/wall.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (i == 1)*/
-	/*	image_render(game, &game->bg, "./img/wall00.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (i == 2)*/
-	/*	image_render(game, &game->bg, "./img/wall01.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
-	/*else if (i == 3)*/
-	/*	image_render(game, &game->bg, "./img/wall02.xpm", column * game->data.tile_size, row * game->data.tile_size);*/
+	else if (row > 0 && row < game->map.height - 1 && column == 0)
+		image_render(game, &game->bg, "./img/wall2_0.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (row == game->map.height - 1 && column == game->map.width - 1)
+			image_render(game, &game->bg, "./img/wall2_2.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (row > 0 && row < game->map.height - 1 && column == game->map.width - 1)
+		image_render(game, &game->bg, "./img/wall1_2.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (row == 0 && column == game->map.width - 1)
+		image_render(game, &game->bg, "./img/wall2_0.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (row == game->map.height - 1 && column > 0 && column < game->map.width - 1)
+		image_render(game, &game->bg, "./img/wall0_2.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (i == 0)
+		image_render(game, &game->bg, "./img/wall.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (i == 1)
+		image_render(game, &game->bg, "./img/wall00.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (i == 2)
+		image_render(game, &game->bg, "./img/wall01.xpm", column * game->data.tile_size, row * game->data.tile_size);
+	else if (i == 3)
+		image_render(game, &game->bg, "./img/wall02.xpm", column * game->data.tile_size, row * game->data.tile_size);
 }

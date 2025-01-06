@@ -43,36 +43,36 @@ void	aw_down(t_game *game)
 		// create function for dying animation
 	image_render(game, &buffer, "./img/floor.xpm", game->player_p.y * SIZE, loc * SIZE);
 	game->player_p.x+= 1;
-	image_render(game, &buffer,  "./img/wd/00_.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE - ((SIZE / 3) * 2));
+	image_render(game, &buffer,  "./img/wd/00.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE - ((SIZE / 3) * 2));
 	image_render(game, &buffer,  "./img/floor.xpm", game->player_p.y * SIZE, loc * SIZE);
 	usleep(300000);
-	image_render(game, &buffer,  "./img/wd/01_.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE - ((SIZE / 3)));
-	image_render(game, &buffer,  "./img/floor.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);
+	image_render(game, &buffer,  "./img/wd/01.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE - ((SIZE / 3)));
+	image_render(game, &buffer,  "./img/floor.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE - ((SIZE / 3)));
 	usleep(300000);
-	image_render(game, &buffer,  "./img/wd/02_.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);
+	image_render(game, &buffer,  "./img/wd/02.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);
 	image_render(game, &buffer,  "./img/floor.xpm", game->player_p.y * SIZE, loc * SIZE);
 	usleep(300000);
 }
 
-/*void	aw_left(t_game *game)*/
-/*{*/
-/*	int loc = game->player_p.y;*/
-/*		// create function for dying animation*/
-/*	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);*/
-/*	game->player_p.y-= 1;*/
-/*	image_render(game, &game->bg, "./img/wl/00.xpm", game->player_p.y * SIZE + ((SIZE / 4) * 3), game->player_p.x * SIZE);*/
-/*	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);*/
-/*	usleep(100000);*/
-/*	image_render(game, &game->bg, "./img/wl/01.xpm", game->player_p.y * SIZE + ((SIZE / 4) * 2), game->player_p.x * SIZE);*/
-/*	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);*/
-/*	usleep(100000);*/
-/*	image_render(game, &game->bg, "./img/wl/02.xpm", game->player_p.y * SIZE + (SIZE / 4), game->player_p.x * SIZE);*/
-/*	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);*/
-/*	usleep(100000);*/
-/*	image_render(game, &game->bg, "./img/wl/03.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);*/
-/*	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);*/
-/*	usleep(100000);*/
-/*}*/
+void	aw_left(t_game *game)
+{
+	int loc = game->player_p.y;
+		// create function for dying animation
+	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);
+	game->player_p.y-= 1;
+	image_render(game, &game->bg, "./img/wl/00.xpm", game->player_p.y * SIZE + ((SIZE / 4) * 3), game->player_p.x * SIZE);
+	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);
+	usleep(300000);
+	image_render(game, &game->bg, "./img/wl/01.xpm", game->player_p.y * SIZE + ((SIZE / 4) * 2), game->player_p.x * SIZE);
+	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);
+	usleep(300000);
+	image_render(game, &game->bg, "./img/wl/02.xpm", game->player_p.y * SIZE + (SIZE / 4), game->player_p.x * SIZE);
+	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);
+	usleep(300000);
+	image_render(game, &game->bg, "./img/wl/03.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);
+	image_render(game, &game->bg, "./img/floor.xpm", loc * SIZE, game->player_p.x * SIZE);
+	usleep(300000);
+}
 /**/
 /*void	aw_right(t_game *game)*/
 /*{*/
@@ -98,10 +98,10 @@ void	aw_choice(t_game *game, int player_sprite)
 {
 	/*if (player_sprite == BACK)*/
 	/*	aw_up(game);*/
-	 if (player_sprite == FRONT)
+	if (player_sprite == FRONT)
 		aw_down(game);
-	/*else if (player_sprite == LEFT)*/
-		/*aw_left(game);*/
+	else if (player_sprite == LEFT)
+		aw_left(game);
 	/*else if (player_sprite == RIGHT)*/
 		/*aw_right(game);*/
 
