@@ -16,11 +16,14 @@ void	window_init(t_game *game)
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			(game->map.height * 64), WIN_TITLE);
+	mlx_key_hook(game->window, key_code, game);
+	mlx_hook(game->window, KeyRelease, KeyReleaseMask, &key_code, game);	
 	init_pixel(game);
 	render_map(game);
 	graphical(game);
-	mlx_key_hook(game->window, key_code, game);
+	mlx_loop_hook(game->mlx, &player_idle, game);
 	mlx_loop(game->mlx);
+
 }
 
 int	key_code(int keycode, t_game *game)

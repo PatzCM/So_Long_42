@@ -12,35 +12,6 @@
 
 #include "../inc/so_long_bonus.h"
 
-/*void	render_player(t_game *game)*/
-/*{*/
-/*	if (game->player_sprite == FRONT)*/
-/*		image_render(game, "./img/player2.xpm", game->player_p.y * 64, game->player_p.x * 64);*/
-/*	else if (game->player_sprite == BACK)*/
-/*		image_render(game, "./img/player_back_ns.xpm", game->player_p.y * 64, game->player_p.x * 64);	*/
-/*	else if (game->player_sprite == LEFT)*/
-/*		mlx_put_image_to_window(game->mlx, game->window,*/
-/*			game->player_left, game->player_p.y * 64, game->player_p.x * 64);*/
-/*	else if (game->player_sprite == RIGHT)*/
-/*		mlx_put_image_to_window(game->mlx, game->window,*/
-/*			game->player_right, game->player_p.y * 64, game->player_p.x * 64);*/
-/*}*/
-/*void	image_render(t_game *game, char *file, int x, int y)*/
-/*{*/
-/*	if (game->img.xpm)*/
-/*	{*/
-/*		mlx_destroy_image(game->mlx, game->img.xpm);*/
-/*		game->img.xpm = 0;*/
-/*	}*/
-/*	game->img.xpm = mlx_xpm_file_to_image(game->mlx, */
-/*	 file, &game->data.tile_size, &game->data.tile_size);*/
-/*	if (!game->img.xpm)*/
-/*		ft_printf("Error\n");*/
-/*	mlx_put_image_to_window(game->mlx, game->window, */
-/*		game->img.xpm, x, y);*/
-/*}*/
-
-
 void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
 {
     char    *dst;
@@ -72,30 +43,32 @@ void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
         }
         if (x++ && a == 64)
             break;
-        dst = buffer->addr + (y * buffer->llen + x * (buffer->bpp / 8));
+				dst = NULL;
+				dst = buffer->addr + (y * buffer->llen + x * (buffer->bpp / 8));
         src = game->img.addr + (a * game->img.llen + b * (game->img.bpp / 8));
-        // Check if the pixel is not black (assuming black is the transparent color)
 				if (*src)
             *(unsigned int *)dst = *(unsigned int *)src;
     }
 	mlx_put_image_to_window(game->mlx, game->window, buffer->img, 0, 0);
 }
-/*void initialize_buffer(t_game *game)*/
-/*{*/
-/*    game->img.img = mlx_new_image(game->mlx, game->map.width * 64, game->map.height * 64);*/
-/*    if (!game->img.img)*/
-/*    {*/
-/*        ft_printf("Error: Unable to create new image\n");*/
-/*        return;*/
-/*    }*/
-/**/
-/*    game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bpp, &game->img.llen, &game->img.endian);*/
-/*    if (!game->img.addr)*/
-/*    {*/
-/*        ft_printf("Error: Unable to get image data address\n");*/
-/*        mlx_destroy_image(game->mlx, game->img.img);*/
-/*    }*/
-/*}*/
+
+int	player_idle(t_game *game)
+{
+	int x;
+	int y;
+
+	y = game->player_p.y;
+	x = game->player_p.x;
+
+	if (game->data.loop < 250000)
+	{
+		game->data.loop++;
+		return (0);
+	}
+	game->data.loop = 0;
+	animation_idle(game, x, y);
+	return (0);
+}
 
 void	render_bg(t_img *buffer, t_game *game, int x, int y)
 {
@@ -134,7 +107,6 @@ void	graphical(t_game *game)
 		game->data.tile_size * game->map.height);
 	buffer.addr = mlx_get_data_addr(buffer.img, &buffer.bpp, &buffer.llen, &buffer.endian);render_map(game);
 	render_bg(&buffer, game, 0, 0);
-	/*image_render(game, &buffer, "./img/idle/00.xpm", game->player_p.y * 64, game->player_p.x * 64);*/
 	mlx_put_image_to_window(game->mlx, game->window, buffer.img, 0, 0);	
 	mlx_destroy_image(game->mlx, buffer.img);
 }
@@ -160,7 +132,7 @@ void	render_map(t_game *game)
 				rand_wall(game, row, column);	
 			}/*rand_wall(game, row, column);*/
 			if (game->map.mtx[row][column] == 'P')
-				image_render(game, &game->bg, "./img/idle/tile000.xpm", column * game->data.tile_size, row * game->data.tile_size);
+				image_render(game, &game->bg, "./img/idle/00.xpm", column * game->data.tile_size, row * game->data.tile_size);
 			if (game->map.mtx[row][column] == 'C')
 				rand_collectibles(game, row, column);
 			if (game->map.mtx[row][column] == '0')
@@ -191,6 +163,42 @@ void	rand_collectibles(t_game *game, int row, int column)
 		image_render(game, &game->bg, "./img/col03.xpm", column * game->data.tile_size, row * game->data.tile_size);
 }
 
+void	rand_enemies(t_game *game)
+{
+	int	x;
+	int y;
+	int enemies;
+
+	game->data.enemies = game->zeros / 20;
+	game->map.enemy_x = ft_calloc(game->data.enemies, sizeof(int));
+	game->map.enemy_y = ft_calloc(game->data.enemies, sizeof(int));
+	enemies = game->data.enemies;
+	while (--enemies >= 0)
+	{
+		y = 0;
+		x = 0;
+		while (game->map.mtx[y][x] != '0')
+		{
+			x = rand() % game->map.height - 1;
+			y = rand() % game->map.width - 1;
+		}
+		game->map.enemy_x[enemies] = x;
+		game->map.enemy_y[enemies] = y;
+	}
+}
+
+/*void	render_enemy(t_game *game)*/
+/*{*/
+/*	int i;*/
+/*	t_map *m;*/
+/*	m = &game->map;*/
+/*	i = -1;*/
+/*	while (++i < game->data.enemies)*/
+/*	{*/
+/*		image_render(game, &game->bg, "./img/enemy.xpm", m->enemy_y[i] * game->data.tile_size, m->enemy_x[i] * game->data.tile_size);*/
+/*		m->mtx[m->enemy_x[i]][m->enemy_y[i]] = 'X';*/
+/*	}	*/
+/*}*/
 void rand_wall(t_game *game, int row, int column)
 {
 	int i;

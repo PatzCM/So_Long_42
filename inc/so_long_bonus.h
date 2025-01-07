@@ -39,6 +39,8 @@ typedef struct s_data
 {
 	int		len;
 	int		tile_size;
+	int		loop;
+	int		enemies;
 }				t_data;
 
 typedef struct s_map
@@ -53,6 +55,8 @@ typedef struct s_map
 	int		column_end;
 	int		height;
 	int		width;
+	int		*enemy_x;
+	int		*enemy_y;
 }	t_map;
 
 typedef struct s_player
@@ -96,6 +100,7 @@ typedef struct s_game
 	void		*player_right;
 	void		*player_back;
 	int			player_sprite;
+	int			zeros;
 	int			moves;
 	t_img		img;
 	t_data	data;
@@ -145,7 +150,8 @@ void	aw_up(t_game *game);
 void	aw_down(t_game *game);
 void	aw_left(t_game *game);
 void	aw_right(t_game *game);
-
+int	player_idle(t_game *game);
+void animation_idle(t_game *game, int x, int y);
 // Wallpapers
 
 void	graphical(t_game *game);

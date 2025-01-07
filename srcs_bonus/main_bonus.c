@@ -75,4 +75,8 @@ void	init_values(t_game *game)
 	game->player_p.y = 0;
 	game->player_p.x_end = 0;
 	game->player_p.y_end = 0;
+	game->data.loop = 0;
+	game->zeros = 0;
+	/*game->map.enemy_x = NULL;*/
+	/*game->map.enemy_y = NULL;*/
 }

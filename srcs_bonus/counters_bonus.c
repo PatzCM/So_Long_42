@@ -59,6 +59,8 @@ int	number_of_elements(char **matrix, int collectibles, t_game *game)
 		j = 0;
 		while (matrix[i][j])
 		{
+			if (matrix[i][j] == '0')
+				game->zeros++;
 			if (matrix[i][j] == 'C')
 				collectibles++;
 			else if (matrix[i][j] == 'P')

@@ -110,6 +110,7 @@ int			size_row(char **matrix);
 int			size_column(char **matrix);
 t_game		*limits(t_game *game);
 
+
 // Pathing
 
 void		player_position(char **matrix, t_player *player);
