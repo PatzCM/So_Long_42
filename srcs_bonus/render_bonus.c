@@ -163,42 +163,48 @@ void	rand_collectibles(t_game *game, int row, int column)
 		image_render(game, &game->bg, "./img/col03.xpm", column * game->data.tile_size, row * game->data.tile_size);
 }
 
-void	rand_enemies(t_game *game)
+int	rand_enemies(t_game *game)
 {
 	int	x;
 	int y;
 	int enemies;
+	int i = -1;
 
 	game->data.enemies = game->zeros / 20;
-	game->map.enemy_x = ft_calloc(game->data.enemies, sizeof(int));
-	game->map.enemy_y = ft_calloc(game->data.enemies, sizeof(int));
+	printf("enemies = %d\n", game->data.enemies);
+	game->map.enemy_x = ft_calloc(game->data.enemies, sizeof(int ));
+	game->map.enemy_y = ft_calloc(game->data.enemies, sizeof(int ));
 	enemies = game->data.enemies;
-	while (--enemies >= 0)
+		while (enemies > ++i)
 	{
 		y = 0;
 		x = 0;
-		while (game->map.mtx[y][x] != '0')
+		while (game->map.mtx[y][x] != '\0' && game->map.mtx[y][x] != '0' )
 		{
-			x = rand() % game->map.height - 1;
-			y = rand() % game->map.width - 1;
+			y = rand() % (game->map.height );
+			x = rand() % (game->map.width);
+			printf(" x = %d y = %d\n", x, y);
 		}
-		game->map.enemy_x[enemies] = x;
-		game->map.enemy_y[enemies] = y;
+		printf("total enemy %d | enemy %d\n",game->data.enemies,  i);
+		game->map.enemy_x[i] = y;
+		game->map.enemy_y[i] = x;
+		printf("dead horse\n");
 	}
+	return (1);
 }
 
-/*void	render_enemy(t_game *game)*/
-/*{*/
-/*	int i;*/
-/*	t_map *m;*/
-/*	m = &game->map;*/
-/*	i = -1;*/
-/*	while (++i < game->data.enemies)*/
-/*	{*/
-/*		image_render(game, &game->bg, "./img/enemy.xpm", m->enemy_y[i] * game->data.tile_size, m->enemy_x[i] * game->data.tile_size);*/
-/*		m->mtx[m->enemy_x[i]][m->enemy_y[i]] = 'X';*/
-/*	}	*/
-/*}*/
+void	render_enemy(t_game *game)
+{
+	int i;
+	t_map *m;
+	m = &game->map;
+	i = -1;
+	while (++i < game->data.enemies)
+	{
+		image_render(game, &game->bg, "./img/z_idle/00.xpm", m->enemy_y[i] * game->data.tile_size, m->enemy_x[i] * game->data.tile_size);
+		m->mtx[m->enemy_x[i]][m->enemy_y[i]] = 'X';
+	}	
+}
 void rand_wall(t_game *game, int row, int column)
 {
 	int i;

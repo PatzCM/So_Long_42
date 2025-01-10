@@ -23,6 +23,14 @@ int	main(int argc, char **argv)
 	init_values(game);
 	map_validation(argv[1], game);
 	window_init(game);
+	init_pixel(game);
+	render_map(game);
+	//printf("height = %d width = %d\n", game->map.enemy_x[0], game->map.enemy_y[0]);
+	rand_enemies(game);
+	render_enemy(game);
+	graphical(game);
+	mlx_loop_hook(game->mlx, &player_idle, game);
+	mlx_loop(game->mlx);
 }
 
 void	map_validation(char *file, t_game *game)
@@ -77,6 +85,6 @@ void	init_values(t_game *game)
 	game->player_p.y_end = 0;
 	game->data.loop = 0;
 	game->zeros = 0;
-	/*game->map.enemy_x = NULL;*/
-	/*game->map.enemy_y = NULL;*/
+	game->map.enemy_x = NULL;
+	game->map.enemy_y = NULL;
 }

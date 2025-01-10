@@ -48,7 +48,7 @@ void	free_stacks(t_game *game)
 	}
 	if (game->mlx)
 	{
-		destroy_image(game);
+		/*destroy_image(game);*/
 		free(game->mlx);
 	}
 	if (game)
@@ -73,16 +73,16 @@ void	free_map(t_game *game)
 	}
 }
 
-void	destroy_image(t_game *game)
-{
-	ft_printf("Destroying images\n");
-	mlx_destroy_image(game->mlx, game->player_img);
-	mlx_destroy_image(game->mlx, game->collectible_img);
-	mlx_destroy_image(game->mlx, game->floor);
-	mlx_destroy_image(game->mlx, game->wall);
-	mlx_destroy_image(game->mlx, game->exit_img);
-	mlx_destroy_image(game->mlx, game->i_exit);
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_display(game->mlx);
-	(void)game;
-}
+/*void	destroy_image(t_game *game)*/
+/*{*/
+/*	ft_printf("Destroying images\n");*/
+/*	mlx_destroy_image(game->mlx, game->player_img);*/
+/*	mlx_destroy_image(game->mlx, game->collectible_img);*/
+/*	mlx_destroy_image(game->mlx, game->floor);*/
+/*	mlx_destroy_image(game->mlx, game->wall);*/
+/*	mlx_destroy_image(game->mlx, game->exit_img);*/
+/*	mlx_destroy_image(game->mlx, game->i_exit);*/
+/*	mlx_destroy_window(game->mlx, game->window);*/
+/*	mlx_destroy_display(game->mlx);*/
+/*	(void)game;*/
+/*}*/

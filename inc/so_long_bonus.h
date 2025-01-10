@@ -96,6 +96,7 @@ typedef struct s_game
 	void		*floor_dec;
 	void		*i_exit;
 	void		*enemy;
+	char		**nbr;
 	void		*player_left;
 	void		*player_right;
 	void		*player_back;
@@ -110,10 +111,17 @@ typedef struct s_game
 
 // Initialization & Memory
 t_player	*player_alloc(char **mtx);
+void		init_nbr(t_game *game);
+void		init_values(t_game *game);
+t_game		*data_init(t_game *game);
+
+// Memory
+
+void		free_map(t_game *game);
 void		free_stacks(t_game *game);
 void		destroy_image(t_game *game);
-void		free_map(t_game *game);
 void		exit_game(t_game *game, int status);
+
 
 // Parsing Map
 
@@ -152,31 +160,34 @@ void	aw_left(t_game *game);
 void	aw_right(t_game *game);
 int	player_idle(t_game *game);
 void animation_idle(t_game *game, int x, int y);
+
 // Wallpapers
 
 void	graphical(t_game *game);
 void	render_bg(t_img *buffer, t_game *game, int y, int x);
 void	init_pixel(t_game *game);
-void	image_render(t_game *game, t_img *buffer, char *file, int x, int y);
 
 // Defines
 // # define MAP_PATH "maps/map.ber"
 
+// Enemy
+int		rand_enemies(t_game *game);
+void	render_enemy(t_game *game);
 
 // Window
-void		init_values(t_game *game);
 void		window_init(t_game *game);
 
 // Images
-t_game		*data_init(t_game *game);
 
 void		render_map(t_game *game);
-void		pixel_put(t_game *game, int x, int y, int color);
+/*void		pixel_put(t_game *game, int x, int y, int color);*/
 /*void		image_render(t_game *game, char *file, int x, int y);*/
-void		render_map2(t_game *game, int row, int column);
+/*void		render_map2(t_game *game, int row, int column);*/
 void		render_player(t_game *game);
 void		rand_collectibles(t_game *game, int row, int column);
 void		rand_wall(t_game *game, int row, int column);
+void		image_render(t_game *game, t_img *buffer, char *file, int x, int y);
+
 // Keys
 
 int			key_code(int keycode, t_game *game);

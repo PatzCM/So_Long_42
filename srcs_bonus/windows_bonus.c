@@ -17,12 +17,14 @@ void	window_init(t_game *game)
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			(game->map.height * 64), WIN_TITLE);
 	mlx_key_hook(game->window, key_code, game);
-	mlx_hook(game->window, KeyRelease, KeyReleaseMask, &key_code, game);	
-	init_pixel(game);
-	render_map(game);
-	graphical(game);
-	mlx_loop_hook(game->mlx, &player_idle, game);
-	mlx_loop(game->mlx);
+	/*mlx_hook(game->window, KeyRelease, KeyReleaseMask, &key_code, game);*/
+	/*mlx_hook(game->window, DestroyNotify, StructureNotifyMask, &exit_game, game);*/
+	/*init_pixel(game);*/
+	/*render_map(game);*/
+	/*render_enemy(game);*/
+	/*graphical(game);*/
+	/*mlx_loop_hook(game->mlx, &player_idle, game);*/
+	/*mlx_loop(game->mlx);*/
 
 }
 
