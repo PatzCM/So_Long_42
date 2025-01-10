@@ -183,12 +183,9 @@ int	rand_enemies(t_game *game)
 		{
 			y = rand() % (game->map.height );
 			x = rand() % (game->map.width);
-			printf(" x = %d y = %d\n", x, y);
 		}
-		printf("total enemy %d | enemy %d\n",game->data.enemies,  i);
 		game->map.enemy_x[i] = y;
 		game->map.enemy_y[i] = x;
-		printf("dead horse\n");
 	}
 	return (1);
 }
