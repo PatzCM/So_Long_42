@@ -41,6 +41,7 @@ int	key_code(int keycode, t_game *game)
 		move_right(game);
 	else if (keycode == KEY_ESC)
 		exit_game(game, 0);
+	enemy_position(game, game->data.enemies);
 	return (0);
 }
 

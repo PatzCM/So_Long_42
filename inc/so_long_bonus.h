@@ -97,9 +97,6 @@ typedef struct s_game
 	void		*i_exit;
 	void		*enemy;
 	char		**nbr;
-	void		*player_left;
-	void		*player_right;
-	void		*player_back;
 	int			player_sprite;
 	int			zeros;
 	int			moves;
@@ -160,6 +157,7 @@ void	aw_left(t_game *game);
 void	aw_right(t_game *game);
 int	player_idle(t_game *game);
 void animation_idle(t_game *game, int x, int y);
+void	animate_death(t_game *game, int x, int y);
 
 // Wallpapers
 
@@ -173,6 +171,9 @@ void	init_pixel(t_game *game);
 // Enemy
 int		rand_enemies(t_game *game);
 void	render_enemy(t_game *game);
+void enemy_position(t_game *game, int moves);
+void	move_enemy(t_game *game, int enemies);
+void	zombie_up_animate(t_game *game, int enemies);
 
 // Window
 void		window_init(t_game *game);
@@ -180,9 +181,6 @@ void		window_init(t_game *game);
 // Images
 
 void		render_map(t_game *game);
-/*void		pixel_put(t_game *game, int x, int y, int color);*/
-/*void		image_render(t_game *game, char *file, int x, int y);*/
-/*void		render_map2(t_game *game, int row, int column);*/
 void		render_player(t_game *game);
 void		rand_collectibles(t_game *game, int row, int column);
 void		rand_wall(t_game *game, int row, int column);

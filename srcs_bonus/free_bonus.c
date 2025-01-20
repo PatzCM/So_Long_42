@@ -31,8 +31,19 @@ void	exit_game(t_game *game, int status)
 		ft_printf(RED"\n ERROR VALIDATING MAP\n\n"RESET);
 	if (status == 3)
 		ft_printf(RED"\n ERROR COLLECTIBLES\n\n"RESET);
+	if (status == 4)
+		ft_printf(RED"\n\
+__   __                _ _          _ _  \n\
+\\ \\ / /               | (_)        | | | \n\
+ \\ V /___  _   _    __| |_  ___  __| | | \n\
+  \\ // _ \\| | | |  / _` | |/ _ \\/ _` | | \n\
+  | | (_) | |_| | | (_| | |  __/ (_| |_| \n\
+  \\_/\\___/ \\__,_|  \\__,_|_|\\___|\\__,_(_) \n\
+																				 \n\n\
+"RESET);
 	else
 		ft_printf(RED"\nEXITING GAME\n"RESET);
+
 	free_stacks(game);
 	exit(EXIT_SUCCESS);
 }

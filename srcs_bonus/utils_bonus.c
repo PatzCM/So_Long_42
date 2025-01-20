@@ -59,9 +59,12 @@ int	move(t_game *game, int to_x, int to_y, int player_sprite)
 	}
 	if (game->map.mtx[to_x][to_y] == 'E' && game->collectibles > 0)
 		return (ft_printf("You need to collect all the collectibles\n"), 1);
-	/*image_render(game, game->img.img, "./img/floor.xpm", game->player_p.y * SIZE, game->player_p.x * SIZE);*/
-	/*render_map(game);*/
-	aw_choice(game, player_sprite);
+	if (game->map.mtx[to_x][to_y] == 'X')
+	{
+		aw_choice(game, player_sprite);
+		animate_death(game, to_x, to_y);
+	}
+		aw_choice(game, player_sprite);
 	return (ft_printf("Number of moves[%d]\n", moves++), 0);
 }
 
