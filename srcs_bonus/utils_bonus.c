@@ -44,7 +44,6 @@ void	move_right(t_game *game)
 
 int	move(t_game *game, int to_x, int to_y, int player_sprite)
 {
-	static int	moves = 1;
 	
 	game->player_sprite = player_sprite;
 	if (game->collectibles == 0)
@@ -65,7 +64,8 @@ int	move(t_game *game, int to_x, int to_y, int player_sprite)
 		animate_death(game, to_x, to_y);
 	}
 		aw_choice(game, player_sprite);
-	return (ft_printf("Number of moves[%d]\n", moves++), 0);
+	nbr_of_moves(game);
+	return (0);
 }
 
 

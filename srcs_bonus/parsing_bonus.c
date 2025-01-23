@@ -51,6 +51,7 @@ char	**matrix(char *file)
 	}
 	mtrx.matrix[i] = NULL;
 	close(mtrx.fd);
+
 	return (mtrx.matrix);
 }
 

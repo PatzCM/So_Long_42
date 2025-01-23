@@ -36,29 +36,37 @@ void	animate_death(t_game *game, int x, int y)
 	exit_game(game, 4);
 }
 
-/*void	animate_zombie(t_game *game)*/
-/*{*/
-/*	game->map.mtx[]*/
-/*}*/
-/**/
-void	zombie_up_animate(t_game *game, int enemies)
+void	render_number(t_game *game, char *file, int x, int y)
 {
-	int floor;
-	printf("Zombie[%d][%d]\n", game->map.enemy_x[enemies], game->map.enemy_y[enemies]);
-	floor = game->map.enemy_y[enemies];
-	image_render(game, &game->bg, "./img/floor.xpm", game->map.enemy_x[enemies] * SIZE, floor * SIZE);
-	game->map.enemy_y[enemies] -= 1;
-	usleep(300000);
-	image_render(game, &game->bg, "./img/zu/00.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE + (SIZE / 4) * 3);
-	image_render(game, &game->bg, "./img/floor.xpm", game->map.enemy_x[enemies] * SIZE, floor * SIZE);
-	usleep(300000);
-	image_render(game, &game->bg, "./img/zu/01.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE + (SIZE / 4) * 2);
-	image_render(game, &game->bg, "./img/floor.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE + (SIZE / 4) * 3);
-	usleep(300000);
-	image_render(game, &game->bg, "./img/zu/02.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE + (SIZE / 4));
-	image_render(game, &game->bg, "./img/floor.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE + (SIZE / 4));
-	usleep(300000);
-	image_render(game, &game->bg, "./img/zu/03.xpm", game->map.enemy_x[enemies] * SIZE, game->map.enemy_y[enemies] * SIZE);
+		
+		if (game->img.xpm)
+	{
+		mlx_destroy_image(game->mlx, game->img.xpm);
+		game->img.xpm = 0;
+	}
+	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
+	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
+	mlx_put_image_to_window(game->mlx, game->window, game->img.xpm, x, y);
+}
 
+void	nbr_of_moves(t_game *game)
+{
+	int i;
+	int digit;
+	int moves;
+	game->moves++;
+	moves = game->moves;
+	i = 0;
+	while (i < 6)
+	{
+		digit = moves % 10;
+		moves = moves / 10;
+		//esta merda 'e makumba'
+		if (game->map.width % 2 != 0)
+			render_number(game, game->nbr[digit], (game->map.width / 2 * 64 + 94) - i * 64, (game->map.height) * 64);
+		else
+			render_number(game, game->nbr[digit], (game->map.width / 2 * 64 + 94) - i * 32, (game->map.height) * 64);
+	i++;
+	}
 }
 

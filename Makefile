@@ -33,6 +33,8 @@ BONUS = so_long_bonus
 
 INCLUDES = -I./include -Imlx
 
+
+
 # Source files
 
 SRCS = srcs/main.c\
@@ -55,7 +57,6 @@ SRCS_BONUS = srcs_bonus/main_bonus.c\
 						 srcs_bonus/move_animation.c\
 						 srcs_bonus/enemies.c\
 						 srcs_bonus/animations.c\
-						 srcs_bonus/move_zombie.c\
 
 OBJS = $(SRCS:.c=.o)
 B_OBJS = $(SRCS_BONUS:.c=.o)

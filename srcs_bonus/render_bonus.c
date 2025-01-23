@@ -28,7 +28,6 @@ void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
 	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
 	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
 	game->img.addr = mlx_get_data_addr(game->img.xpm, &game->img.bpp, &game->img.llen, &game->img.endian);
-	
 	temp = x;
     a = 0;
     b = -1;

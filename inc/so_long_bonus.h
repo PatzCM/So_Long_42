@@ -89,7 +89,6 @@ typedef struct s_game
 	int			exit;
 	int			player;
 	void		*player_img;
-	void		*collectible_img;
 	void		*exit_img;
 	void		*wall;
 	void		*floor;
@@ -167,12 +166,15 @@ void	init_pixel(t_game *game);
 
 // Defines
 // # define MAP_PATH "maps/map.ber"
+// Numbers and movements
+
+void nbr_of_moves(t_game *game);
 
 // Enemy
 int		rand_enemies(t_game *game);
 void	render_enemy(t_game *game);
 void enemy_position(t_game *game, int moves);
-void	move_enemy(t_game *game, int enemies);
+void	move_enemy(t_game *game, int enemies, int *x, int *y);
 void	zombie_up_animate(t_game *game, int enemies);
 
 // Window

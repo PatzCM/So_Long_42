@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	window_init(game);
 	init_pixel(game);
 	render_map(game);
-	//printf("height = %d width = %d\n", game->map.enemy_x[0], game->map.enemy_y[0]);
 	rand_enemies(game);
 	render_enemy(game);
 	graphical(game);
@@ -60,19 +59,31 @@ t_player	*player_alloc(char **mtx)
 	return (player);
 }
 
+static void	number_init(t_game *game)
+{
+	game->nbr = ft_calloc(sizeof(char *), 10);
+
+	game->nbr[0] = "./img/nb/0.xpm";
+	game->nbr[1] = "./img/nb/1.xpm";
+	game->nbr[2] = "./img/nb/2.xpm";
+	game->nbr[3] = "./img/nb/3.xpm";
+	game->nbr[4] = "./img/nb/4.xpm";
+	game->nbr[5] = "./img/nb/5.xpm";
+	game->nbr[6] = "./img/nb/6.xpm";
+	game->nbr[7] = "./img/nb/7.xpm";
+	game->nbr[8] = "./img/nb/8.xpm";
+	game->nbr[9] = "./img/nb/9.xpm";
+}
+
 void	init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->window = NULL;
 	game->image = NULL;
-	game->player_img = NULL;
 	game->collectibles = 0;
-	game->collectible_img = NULL;
+	game->moves = 0;
 	game->exit = 0;
-	game->exit_img = NULL;
 	game->player = 0;
-	game->floor = NULL;
-	game->wall = NULL;
 	game->data.tile_size = SIZE;
 	game->map.width = 0;
 	game->map.height = 0;
@@ -87,4 +98,7 @@ void	init_values(t_game *game)
 	game->zeros = 0;
 	game->map.enemy_x = NULL;
 	game->map.enemy_y = NULL;
+	number_init(game);
 }
+
+
