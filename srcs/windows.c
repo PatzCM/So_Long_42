@@ -14,11 +14,11 @@
 void	window_init(t_game *game)
 {
 	game->mlx = mlx_init();
-	image_render(game);
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			(game->map.height * 64), WIN_TITLE);
-	render_map(game);
+	render_map(game, -1, -1);
 	mlx_key_hook(game->window, key_code, game);
+	mlx_hook(game->window, 17, (1L << 19), &kill_game, game);
 	mlx_loop(game->mlx);
 }
 

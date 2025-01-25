@@ -37,6 +37,12 @@ void	exit_game(t_game *game, int status)
 	exit(EXIT_SUCCESS);
 }
 
+int	kill_game(t_game *game)
+{
+	exit_game(game, 0);
+	return (0);
+}
+
 void	free_stacks(t_game *game)
 {
 	printf("Destroying stacks\n");
@@ -48,7 +54,8 @@ void	free_stacks(t_game *game)
 	}
 	if (game->mlx)
 	{
-		destroy_image(game);
+		mlx_destroy_window(game->mlx, game->window);
+		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	if (game)

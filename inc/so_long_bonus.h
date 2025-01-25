@@ -150,10 +150,10 @@ int			move(t_game *game, int to_x, int to_y, int player_sprite);
 // Animations
 void	ini_anim(t_game *game, int row, int column);
 void	aw_choice(t_game *game, int player_sprite);
-void	aw_up(t_game *game);
+void	aw_up(t_game *game, int loc);
 void	aw_down(t_game *game);
-void	aw_left(t_game *game);
-void	aw_right(t_game *game);
+void	aw_left(t_game *game, int loc);
+void	aw_right(t_game *game, int loc);
 int	player_idle(t_game *game);
 void animation_idle(t_game *game, int x, int y);
 void	animate_death(t_game *game, int x, int y);

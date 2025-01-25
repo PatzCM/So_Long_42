@@ -35,10 +35,7 @@
 typedef struct s_data
 {
 	void	*img;
-	char	*addr;
-	int		bpp;
-	int		len;
-	int		endian;
+	void	*xpm;
 	int		tile_size;
 }				t_data;
 
@@ -135,14 +132,15 @@ void		window_init(t_game *game);
 // Images
 t_game		*data_init(t_game *game);
 
-void		render_map(t_game *game);
+void		render_map(t_game *game, int row, int column);
 void		pixel_put(t_game *game, int x, int y, int color);
-void		image_render(t_game *game);
+void		image_render(t_game *game, char *file, int x, int y);
 void		render_map2(t_game *game, int row, int column);
 
 // Keys
 
 int			key_code(int keycode, t_game *game);
+int			kill_game(t_game *game);
 
 # define KEY_ESC 65307 
 # define KEY_W 119

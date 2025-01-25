@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -51,7 +51,6 @@ char	**matrix(char *file)
 	}
 	mtrx.matrix[i] = NULL;
 	close(mtrx.fd);
-
 	return (mtrx.matrix);
 }
 
@@ -72,6 +71,7 @@ int	validate_ber(char *file)
 void	validate_shape(char **matrix, t_game *game)
 {
 	t_map	map;
+
 	map.row = 0;
 	map.row_end = size_row(matrix);
 	map.column_end = size_column(matrix);

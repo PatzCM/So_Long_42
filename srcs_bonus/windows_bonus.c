@@ -17,15 +17,6 @@ void	window_init(t_game *game)
 	game->window = mlx_new_window(game->mlx, (game->map.width * 64),
 			((game->map.height + 1) * 64), WIN_TITLE);
 	mlx_key_hook(game->window, key_code, game);
-	/*mlx_hook(game->window, KeyRelease, KeyReleaseMask, &key_code, game);*/
-	/*mlx_hook(game->window, DestroyNotify, StructureNotifyMask, &exit_game, game);*/
-	/*init_pixel(game);*/
-	/*render_map(game);*/
-	/*render_enemy(game);*/
-	/*graphical(game);*/
-	/*mlx_loop_hook(game->mlx, &player_idle, game);*/
-	/*mlx_loop(game->mlx);*/
-
 }
 
 int	kill_game(t_game *game)
@@ -36,13 +27,13 @@ int	kill_game(t_game *game)
 
 int	key_code(int keycode, t_game *game)
 {
-	if (keycode == KEY_W)
+	if (keycode == KEY_W || keycode == KEY_UP)
 		move_up(game);
-	else if (keycode == KEY_A)
+	else if (keycode == KEY_A || keycode == KEY_LEFT)
 		move_left(game);
-	else if (keycode == KEY_S)
+	else if (keycode == KEY_S || keycode == KEY_DOWN)
 		move_down(game);
-	else if (keycode == KEY_D)
+	else if (keycode == KEY_D || keycode == KEY_RIGHT)
 		move_right(game);
 	else if (keycode == KEY_ESC)
 		exit_game(game, 0);

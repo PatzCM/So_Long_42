@@ -56,20 +56,12 @@ void	init_values(t_game *game)
 {
 	game->mlx = NULL;
 	game->window = NULL;
-	game->image = NULL;
-	game->player_img = NULL;
 	game->collectibles = 0;
-	game->collectible_img = NULL;
 	game->exit = 0;
-	game->exit_img = NULL;
 	game->player = 0;
 	game->floor = NULL;
 	game->wall = NULL;
 	game->data.img = NULL;
-	game->data.addr = NULL;
-	game->data.bpp = 0;
-	game->data.len = 0;
-	game->data.endian = 0;
 	game->data.tile_size = SIZE;
 	game->map.width = 0;
 	game->map.height = 0;

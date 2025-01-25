@@ -57,6 +57,7 @@ SRCS_BONUS = srcs_bonus/main_bonus.c\
 						 srcs_bonus/move_animation.c\
 						 srcs_bonus/enemies.c\
 						 srcs_bonus/animations.c\
+						 srcs_bonus/extra_animations_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
 B_OBJS = $(SRCS_BONUS:.c=.o)

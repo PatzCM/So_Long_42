@@ -9,44 +9,47 @@
 /*   Updated: 2024/12/31 00:11:00 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../inc/so_long_bonus.h"
+
+void	pixel_rendering(t_game *game, t_img *buffer, int x, int y);
 
 void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
 {
-    char    *dst;
-    char    *src;
-    int     a;
-    int     b;
-    int     temp;
-		
 	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
-	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
 	game->img.addr = mlx_get_data_addr(game->img.xpm, &game->img.bpp, &game->img.llen, &game->img.endian);
-	temp = x;
-    a = 0;
-    b = -1;
-    while (a < 64)
-    {
-        if (++b == 64)
-        {
-            a++;
-            y++;
-            b = 0;
-            x = temp;
-        }
-        if (x++ && a == 64)
-            break;
-				dst = NULL;
-				dst = buffer->addr + (y * buffer->llen + x * (buffer->bpp / 8));
-        src = game->img.addr + (a * game->img.llen + b * (game->img.bpp / 8));
-				if (*src)
-            *(unsigned int *)dst = *(unsigned int *)src;
-    }
+	pixel_rendering(game, buffer, x, y);
 	mlx_put_image_to_window(game->mlx, game->window, buffer->img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img.xpm);
 	game->img.xpm = NULL;
-	mlx_destroy_image(game->mlx, game->img.img);
+}
+
+void	pixel_rendering(t_game *game, t_img *buffer, int x, int y)
+{
+	char	*dst;
+	char	*src;
+	int		a;
+	int		b;
+	int		temp;
+
+	temp = x;
+	a = 0;
+	b = -1;
+	while (a < 64)
+	{
+		if (++b == 64 && a++ > -66)
+		{
+			y++;
+			b = 0;
+			x = temp;
+		}
+		if (x++ && a == 64)
+			break ;
+		dst = NULL;
+		dst = buffer->addr + (y * buffer->llen + x * (buffer->bpp / 8));
+		src = game->img.addr + (a * game->img.llen + b * (game->img.bpp / 8));
+		if (*src)
+			*(unsigned int *)dst = *(unsigned int *)src;
+	}
 }
 
 void	render_bg(t_img *buffer, t_game *game, int x, int y)

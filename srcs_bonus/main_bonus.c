@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 	render_enemy(game);
 	graphical(game);
 	mlx_loop_hook(game->mlx, &player_idle, game);
-	mlx_hook(game->window, 17, (1L<<19), &kill_game, game);
+	mlx_hook(game->window, 17, (1L << 19), &kill_game, game);
 	mlx_loop(game->mlx);
 }
 
@@ -63,7 +63,6 @@ t_player	*player_alloc(char **mtx)
 static void	number_init(t_game *game)
 {
 	game->nbr = ft_calloc(sizeof(char *), 10);
-
 	game->nbr[0] = "./img/nb/0.xpm";
 	game->nbr[1] = "./img/nb/1.xpm";
 	game->nbr[2] = "./img/nb/2.xpm";
@@ -101,5 +100,3 @@ void	init_values(t_game *game)
 	game->map.enemy_y = NULL;
 	number_init(game);
 }
-
-

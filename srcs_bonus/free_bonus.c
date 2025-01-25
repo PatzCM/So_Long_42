@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -43,7 +43,6 @@ __   __                _ _          _ _  \n\
 "RESET);
 	else
 		ft_printf(RED"\nEXITING GAME\n"RESET);
-
 	free_stacks(game);
 	exit(EXIT_SUCCESS);
 }
@@ -92,4 +91,3 @@ void	free_map(t_game *game)
 		i++;
 	}
 }
-
