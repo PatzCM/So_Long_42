@@ -22,7 +22,7 @@ void	render_enemy(t_game *game)
 	while (++i < game->data.enemies)
 	{
 		image_render(game, &game->bg, "./img/z_idle/00.xpm",
-			m->enemy_y[i] * 64, m->enemy_x[i] * 64);
+			it_s(m->enemy_y[i] * 64, m->enemy_x[i] * 64));
 		m->mtx[m->enemy_x[i]][m->enemy_y[i]] = 'X';
 	}
 }

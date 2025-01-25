@@ -41,6 +41,8 @@ ERROR ON FILE NAME\n\n\
 "RESET)), exit_game(game, 0));
 	game->map.matrix = matrix(file);
 	game->map.mtx = matrix(file);
+	if (!game->map.matrix || !game->map.mtx)
+		exit_game(game, 2);
 	validate_shape(game->map.matrix, game);
 	game->collectibles = number_of_elements(game->map.matrix,
 			game->collectibles, game);

@@ -49,8 +49,8 @@ __   __                _ _          _ _  \n\
 
 void	free_stacks(t_game *game)
 {
-	printf("Destroying stacks\n");
-	if (game->map.matrix && game->map.mtx)
+	ft_printf("Destroying stacks\n");
+	if (game->map.matrix || game->map.mtx)
 	{
 		free_map(game);
 		free(game->map.matrix);

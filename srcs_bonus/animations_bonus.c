@@ -32,18 +32,18 @@ int	player_idle(t_game *game)
 void	animate_death(t_game *game, int x, int y)
 {
 	image_render(game, &game->bg, "./img/floor.xpm",
-		game->player_p.y * 64, game->player_p.x * 64);
-	image_render(game, &game->bg, "./img/death/00.xpm", y * 64, x * 64);
-	image_render(game, &game->bg, "./img/floor.xpm", y * 64, x * 64);
+		it_s(game->player_p.y * 64, game->player_p.x * 64));
+	image_render(game, &game->bg, "./img/death/00.xpm", it_s(y * 64, x * 64));
+	image_render(game, &game->bg, "./img/floor.xpm", it_s(y * 64, x * 64));
 	usleep(300000);
-	image_render(game, &game->bg, "./img/death/01.xpm", y * 64, x * 64);
-	image_render(game, &game->bg, "./img/floor.xpm", y * 64, x * 64);
+	image_render(game, &game->bg, "./img/death/01.xpm", it_s(y * 64, x * 64));
+	image_render(game, &game->bg, "./img/floor.xpm", it_s(y * 64, x * 64));
 	usleep(300000);
-	image_render(game, &game->bg, "./img/death/02.xpm", y * 64, x * 64);
-	image_render(game, &game->bg, "./img/floor.xpm", y * 64, x * 64);
+	image_render(game, &game->bg, "./img/death/02.xpm", it_s(y * 64, x * 64));
+	image_render(game, &game->bg, "./img/floor.xpm", it_s(y * 64, x * 64));
 	usleep(300000);
-	image_render(game, &game->bg, "./img/death/03.xpm", y * 64, x * 64);
-	image_render(game, &game->bg, "./img/floor.xpm", y * 64, x * 64);
+	image_render(game, &game->bg, "./img/death/03.xpm", it_s(y * 64, x * 64));
+	image_render(game, &game->bg, "./img/floor.xpm", it_s(y * 64, x * 64));
 	usleep(300000);
 	exit_game(game, 4);
 }

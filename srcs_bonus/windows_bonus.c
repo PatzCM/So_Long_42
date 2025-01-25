@@ -42,8 +42,8 @@ int	key_code(int keycode, t_game *game)
 
 void	init_pixel(t_game *game)
 {
-	game->bg.img = mlx_new_image(game->mlx, game->map.width * game->data.tile_size, game->map.height * game->data.tile_size);
+	game->bg.img = mlx_new_image(game->mlx, game->map.width * 64,
+			game->map.height * 64);
 	game->bg.addr = mlx_get_data_addr(game->bg.img,
 			&game->bg.bpp, &game->bg.llen, &game->bg.endian);
 }
-

@@ -43,6 +43,14 @@ typedef struct s_data
 	int		enemies;
 }				t_data;
 
+typedef struct s_iter
+{
+	int		x;
+	int		y;
+}				t_iter;
+
+t_iter it_s(int y, int x);
+
 typedef struct s_map
 {
 	char	**mtx;
@@ -186,7 +194,7 @@ void		render_map(t_game *game);
 void		render_player(t_game *game);
 void		rand_collectibles(t_game *game, int row, int column);
 void		rand_wall(t_game *game, int row, int column);
-void		image_render(t_game *game, t_img *buffer, char *file, int x, int y);
+void		image_render(t_game *game, t_img *buffer, char *file, t_iter iter);
 
 // Keys
 
