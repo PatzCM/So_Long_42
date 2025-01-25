@@ -42,7 +42,7 @@ __   __                _ _          _ _  \n\
 																				 \n\n\
 "RESET);
 	else
-		ft_printf(RED"\nEXITING GAME\n"RESET);
+		ft_printf(RED"\n EXITING GAME\n\n"RESET);
 	free_stacks(game);
 	exit(EXIT_SUCCESS);
 }

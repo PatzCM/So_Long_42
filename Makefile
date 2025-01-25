@@ -54,9 +54,9 @@ SRCS_BONUS = srcs_bonus/main_bonus.c\
 						 srcs_bonus/render_bonus.c\
 						 srcs_bonus/utils_bonus.c\
 						 srcs_bonus/free_bonus.c\
-						 srcs_bonus/move_animation.c\
-						 srcs_bonus/enemies.c\
-						 srcs_bonus/animations.c\
+						 srcs_bonus/move_animation_bonus.c\
+						 srcs_bonus/enemies_bonus.c\
+						 srcs_bonus/animations_bonus.c\
 						 srcs_bonus/extra_animations_bonus.c\
 						 srcs_bonus/map_rendering_bonus.c\
 
@@ -109,5 +109,11 @@ bonus: $(B_OBJS)
 header:
 	clear
 	@echo	"$$HEADER"
+
+norminette:
+	@echo "$(CYAN)\n Checking norminette for base...\n $(NO_COLOR)"
+	norminette srcs 	
+	@echo "$(CYAN)\n Checking norminette for bonus... \n $(NO_COLOR)"
+	norminette srcs_bonus 
 
 .PHONY: all clean fclean re

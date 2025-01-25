@@ -40,6 +40,8 @@ char	**matrix(char *file)
 
 	i = size_map(file);
 	mtrx.fd = open(file, O_RDONLY);
+	if (mtrx.fd == -1)
+		return (NULL);
 	mtrx.matrix = (char **)ft_calloc(sizeof(char *), i);
 	i = 0;
 	mtrx.line = get_next_line(mtrx.fd);

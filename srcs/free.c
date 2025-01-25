@@ -32,7 +32,7 @@ void	exit_game(t_game *game, int status)
 	if (status == 3)
 		ft_printf(RED"\n ERROR COLLECTIBLES\n\n"RESET);
 	else
-		ft_printf(RED"\nEXITING GAME\n"RESET);
+		ft_printf(RED"\n EXITING GAME\n\n"RESET);
 	free_stacks(game);
 	exit(EXIT_SUCCESS);
 }
