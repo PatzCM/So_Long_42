@@ -20,11 +20,6 @@ void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
     int     b;
     int     temp;
 		
-		if (game->img.xpm)
-	{
-		mlx_destroy_image(game->mlx, game->img.xpm);
-		game->img.xpm = 0;
-	}
 	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
 	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
 	game->img.addr = mlx_get_data_addr(game->img.xpm, &game->img.bpp, &game->img.llen, &game->img.endian);
@@ -49,6 +44,9 @@ void	image_render(t_game *game, t_img *buffer, char *file, int x, int y)
             *(unsigned int *)dst = *(unsigned int *)src;
     }
 	mlx_put_image_to_window(game->mlx, game->window, buffer->img, 0, 0);
+	mlx_destroy_image(game->mlx, game->img.xpm);
+	game->img.xpm = NULL;
+	mlx_destroy_image(game->mlx, game->img.img);
 }
 
 void	render_bg(t_img *buffer, t_game *game, int x, int y)
@@ -90,6 +88,7 @@ void	graphical(t_game *game)
 	render_bg(&buffer, game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, buffer.img, 0, 0);	
 	mlx_destroy_image(game->mlx, buffer.img);
+	nbr_of_moves(game);
 }
 
 

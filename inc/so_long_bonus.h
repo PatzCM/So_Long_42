@@ -191,6 +191,7 @@ void		image_render(t_game *game, t_img *buffer, char *file, int x, int y);
 // Keys
 
 int			key_code(int keycode, t_game *game);
+int			kill_game(t_game *game);
 
 # define KEY_ESC 65307 
 # define KEY_W 119

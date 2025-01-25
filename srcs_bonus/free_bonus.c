@@ -57,9 +57,18 @@ void	free_stacks(t_game *game)
 		free(game->map.matrix);
 		free(game->map.mtx);
 	}
+	if (game->map.enemy_x)
+		free(game->map.enemy_x);
+	if (game->map.enemy_y)
+		free(game->map.enemy_y);
+	if (game->nbr)
+		free(game->nbr);
+	if (game->bg.img)
+		mlx_destroy_image(game->mlx, game->bg.img);
 	if (game->mlx)
 	{
-		/*destroy_image(game);*/
+		mlx_destroy_window(game->mlx, game->window);
+		mlx_destroy_display(game->mlx);
 		free(game->mlx);
 	}
 	if (game)
@@ -84,16 +93,3 @@ void	free_map(t_game *game)
 	}
 }
 
-/*void	destroy_image(t_game *game)*/
-/*{*/
-/*	ft_printf("Destroying images\n");*/
-/*	mlx_destroy_image(game->mlx, game->player_img);*/
-/*	mlx_destroy_image(game->mlx, game->collectible_img);*/
-/*	mlx_destroy_image(game->mlx, game->floor);*/
-/*	mlx_destroy_image(game->mlx, game->wall);*/
-/*	mlx_destroy_image(game->mlx, game->exit_img);*/
-/*	mlx_destroy_image(game->mlx, game->i_exit);*/
-/*	mlx_destroy_window(game->mlx, game->window);*/
-/*	mlx_destroy_display(game->mlx);*/
-/*	(void)game;*/
-/*}*/

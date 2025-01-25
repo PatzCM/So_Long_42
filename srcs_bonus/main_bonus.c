@@ -29,6 +29,7 @@ int	main(int argc, char **argv)
 	render_enemy(game);
 	graphical(game);
 	mlx_loop_hook(game->mlx, &player_idle, game);
+	mlx_hook(game->window, 17, (1L<<19), &kill_game, game);
 	mlx_loop(game->mlx);
 }
 
@@ -81,7 +82,7 @@ void	init_values(t_game *game)
 	game->window = NULL;
 	game->image = NULL;
 	game->collectibles = 0;
-	game->moves = 0;
+	game->moves = -1;
 	game->exit = 0;
 	game->player = 0;
 	game->data.tile_size = SIZE;

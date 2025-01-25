@@ -38,15 +38,15 @@ void	animate_death(t_game *game, int x, int y)
 
 void	render_number(t_game *game, char *file, int x, int y)
 {
-		
-		if (game->img.xpm)
+	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
+	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
+	mlx_put_image_to_window(game->mlx, game->window, game->img.xpm, x, y);
+	if (game->img.xpm)
 	{
 		mlx_destroy_image(game->mlx, game->img.xpm);
 		game->img.xpm = 0;
 	}
-	game->img.xpm = mlx_xpm_file_to_image(game->mlx, file, &game->data.tile_size, &game->data.tile_size);
-	game->img.img = mlx_new_image(game->mlx, game->data.tile_size, game->data.tile_size);
-	mlx_put_image_to_window(game->mlx, game->window, game->img.xpm, x, y);
+	mlx_destroy_image(game->mlx, game->img.img);
 }
 
 void	nbr_of_moves(t_game *game)
@@ -65,7 +65,7 @@ void	nbr_of_moves(t_game *game)
 		if (game->map.width % 2 != 0)
 			render_number(game, game->nbr[digit], (game->map.width / 2 * 64 + 94) - i * 64, (game->map.height) * 64);
 		else
-			render_number(game, game->nbr[digit], (game->map.width / 2 * 64 + 94) - i * 32, (game->map.height) * 64);
+			render_number(game, game->nbr[digit], (game->map.width / 2 * 64 + 94) - i * 64, (game->map.height) * 64);
 	i++;
 	}
 }

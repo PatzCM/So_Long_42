@@ -28,9 +28,14 @@ void	window_init(t_game *game)
 
 }
 
+int	kill_game(t_game *game)
+{
+	key_code(KEY_ESC, game);
+	return (0);
+}
+
 int	key_code(int keycode, t_game *game)
 {
-	(void)game;
 	if (keycode == KEY_W)
 		move_up(game);
 	else if (keycode == KEY_A)
