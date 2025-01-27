@@ -28,10 +28,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include "../mlx/mlx.h"
-# include "../libs/ft_printf.h"
-# include "../libs/get_next_line_bonus.h"
-# include "../libs/libft.h"
+# include "../libs/mlx/mlx.h"
+# include "../libs/libft/libft.h"
 # include <strings.h>
 # include <fcntl.h>
 

@@ -51,10 +51,7 @@ int	move(t_game *game, int to_x, int to_y, int player_sprite)
 	if (game->map.mtx[to_x][to_y] == 'E' && game->collectibles == 0)
 		exit_game(game, 1);
 	if (game->map.mtx[to_x][to_y] == 'C' && game->collectibles-- > -1)
-	{
 		game->map.mtx[to_x][to_y] = '0';
-		ft_printf("Collectibles[%d]\n", game->collectibles);
-	}
 	if (game->map.mtx[to_x][to_y] == 'E' && game->collectibles > 0)
 		return (ft_printf("You need to collect all the collectibles\n"), 1);
 	if (game->map.mtx[to_x][to_y] == 'X')

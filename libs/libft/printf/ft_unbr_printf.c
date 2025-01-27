@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_printf.c                                    :+:      :+:    :+:   */
+/*   ft_unbr_printf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 13:10:12 by palexand          #+#    #+#             */
-/*   Updated: 2024/11/09 13:10:12 by palexand         ###   ########.fr       */
+/*   Created: 2024/11/09 15:16:41 by palexand          #+#    #+#             */
+/*   Updated: 2024/11/09 15:20:43 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
-int	ft_str_printf(char *str)
+int	ft_unbr_printf(unsigned int nr)
 {
-	int	i;
+	int	len;
 
-	i = 0;
-	if (!str)
+	len = 0;
+	if (nr >= 10)
 	{
-		ft_putstr_fd("(null)", 1);
-		return (6);
+		len += ft_unbr_printf(nr / 10);
+		nr = nr % 10;
 	}
-	ft_putstr_fd(str, 1);
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	if (nr < 10)
+		ft_putchar_fd(nr + '0', 1);
+	return (len + 1);
 }

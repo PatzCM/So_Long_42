@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 #include <limits.h>
 #define MIN_INT -2147483648
 
@@ -64,9 +64,3 @@ static int	ft_args(va_list args, char var_type)
 	else
 		return (0);
 }
-
-/*int  main (void)*/
-/*{*/
-/*	ft_printf("Hello %s, %d, %c, %p, %d, %u, %x, %X, %%, %c\n", "World", 42, 'a', &"Hello", 42, 42, 42, 42, 'a');*/
-/*	printf("Hello %s, %d, %c, %p, %d, %u, %x, %X, %%, %c\n", "World", 42, 'a', &"Hello", 42, 42, 42, 42, 'a');*/
-/*}*/

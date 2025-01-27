@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
 // 19 is the maximum size of a hexadecimal number
 // The value is cast to an unsigned long to avoid problems with negative numbers

@@ -80,7 +80,7 @@ int	confirm_flood(char **matrix, t_map *limit)
 		{
 			if (matrix[i][j] != '1' && matrix[i][j] != 'F'
 				&& matrix[i][j] != 'e' && matrix[i][j] != '0')
-				return (ft_printf("Invalid path!\n"), -1);
+				return (ft_printf(RED"\n ERROR \nINVALID PATHING\n"), -1);
 			j++;
 		}
 		i++;

@@ -28,9 +28,9 @@ void	exit_game(t_game *game, int status)
 "RESET);
 	}
 	if (status == 2)
-		ft_printf(RED"\n ERROR VALIDATING MAP\n\n"RESET);
+		ft_printf(RED"\n ERROR \n MAP NOT VALID \n\n"RESET);
 	if (status == 3)
-		ft_printf(RED"\n ERROR COLLECTIBLES\n\n"RESET);
+		ft_printf(RED"\n ERROR \n WRONG COMPONENTS \n\n"RESET);
 	if (status == 4)
 		ft_printf(RED"\n\
 __   __                _ _          _ _  \n\
@@ -49,7 +49,6 @@ __   __                _ _          _ _  \n\
 
 void	free_stacks(t_game *game)
 {
-	ft_printf("Destroying stacks\n");
 	if (game->map.matrix || game->map.mtx)
 	{
 		free_map(game);

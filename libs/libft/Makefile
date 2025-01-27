@@ -28,10 +28,10 @@ LIBFT = ft_isalnum.c ft_itoa.c ft_memset.c ft_strlcpy.c ft_substr.c ft_isalpha.c
 			ft_memmove.c ft_strlcat.c ft_strtrim.c ft_strmapi.c ft_striteri.c \
 			ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c 
 
-PRINTF = ft_printf.c ft_hexa_printf.c ft_hexa_printf.c ft_nbr_printf.c ft_pointer_printf.c \
-				 ft_str_printf.c ft_unbr_printf.c
+PRINTF = printf/ft_printf.c printf/ft_hexa_printf.c printf/ft_hexa_printf.c printf/ft_nbr_printf.c printf/ft_pointer_printf.c \
+				 printf/ft_str_printf.c printf/ft_unbr_printf.c
 
-GNL = get_next_line_bonus.c get_next_line_utils_bonus.c
+GNL = gnl/get_next_line_bonus.c gnl/get_next_line_utils_bonus.c
 SRCS = ${LIBFT} ${PRINTF} ${GNL}
 # OBJS = Object files $(source: .c INPUT = .o OUTPUT) because when compiling a static library you need .o files.
 OBJS = ${SRCS:.c=.o}

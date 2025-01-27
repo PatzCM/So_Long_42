@@ -66,43 +66,43 @@ B_OBJS = $(SRCS_BONUS:.c=.o)
 # Compiler and flags
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror  
-LIBS = ./libs/libft.a
+LIBS = ./libs/libft/libft.a ./libs/mlx/libmlx.a
 RM = rm -f
 AR = ar rcs
 
 # Link X11 and mlx libraries
-MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+MLX_FLAGS = -L ./libs/minilibx-linux -lm -Ilmlx -lXext -lX11
 
 # Rules
 
 all: deps $(NAME)
 
 deps:
-	make -C ./libs
+	make -C ./libs/libft
 	@echo	"$(CYAN)$$HEADER \n $(GREEN)Dependencies done!$(NO_COLOR)"
 
 $(NAME): $(OBJS)
-	$(MAKE) -C mlx
+	$(MAKE) -C ./libs/mlx
 	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) $(LIBS) -o $(NAME)
 	@echo	"$(CYAN)$$HEADER \n $(GREEN)Compilation done!$(NO_COLOR)"
 
 clean:
 	rm -f $(OBJS) $(B_OBJS)
-	$(MAKE) -C mlx clean
-	$(MAKE) -C ./libs clean
+	$(MAKE) -C ./libs/mlx clean
+	$(MAKE) -C ./libs/libft clean
 	@echo	"$(YELLOW)Cleaning done!$(NO_COLOR)"
 
 fclean: clean
 	rm -f $(NAME) $(BONUS) 
-	$(MAKE) -C mlx clean
-	$(MAKE) -C ./libs fclean
+	$(MAKE) -C ./libs/mlx clean
+	$(MAKE) -C ./libs/libft fclean
 	@echo "$(YELLOW)Cleaning done!$(NO_COLOR)"
 
 re: fclean all
 
 bonus: $(B_OBJS)
-	$(MAKE) -C mlx
-	$(MAKE) -C ./libs
+	$(MAKE) -C ./libs/mlx
+	$(MAKE) -C ./libs/libft
 	$(CC) $(CFLAGS) $(B_OBJS) $(MLX_FLAGS) $(LIBS) -o $(BONUS)
 	@echo	"$(CYAN)$$HEADER \n $(GREEN)BONUS READY!$(NO_COLOR)" 
 
@@ -114,6 +114,8 @@ norminette:
 	@echo "$(CYAN)\n Checking norminette for base...\n $(NO_COLOR)"
 	norminette srcs 	
 	@echo "$(CYAN)\n Checking norminette for bonus... \n $(NO_COLOR)"
-	norminette srcs_bonus 
+	norminette srcs_bonus
+	@echo "$(CYAN)\n Checking norminette for libft... \n $(NO_COLOR)"
+	norminette libs/libft
 
 .PHONY: all clean fclean re

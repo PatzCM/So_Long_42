@@ -19,8 +19,6 @@
 # include <stdlib.h>
 # include <bsd/string.h>
 # include <strings.h>
-# include "get_next_line_bonus.h"
-# include "ft_printf.h"
 
 typedef struct s_list
 {
@@ -79,4 +77,28 @@ void					ft_lstclear(t_list **lst, void (*del)(void *));
 void					ft_lstiter(t_list *lst, void (*f)(void *));
 t_list					*ft_lstmap(t_list *lst, void *(f)(void *), \
 											void (*del)(void *));
+
+// GNL 
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
+char					*get_next_line(int fd);
+char					*ft_strchr(char *s, int c);
+char					*ft_substr(char const *s, unsigned int start, \
+										size_t len);
+char					*ft_strjoin(char *s1, char *s2);
+void					*ft_calloc(size_t nbytes, size_t size);
+char					*left_trim(char *left_c);
+
+// printf 
+
+int						ft_printf(const char *argument, ...);
+int						ft_pointer_printf(void *hex);
+int						ft_hexa_printf(unsigned int n, int upper_or_lower);
+int						ft_nbr_printf(int n);
+int						ft_str_printf(char *str);
+int						ft_unbr_printf(unsigned int nr);
+
 #endif

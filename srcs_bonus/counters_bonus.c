@@ -73,6 +73,6 @@ int	number_of_elements(char **matrix, int collectibles, t_game *game)
 	}
 	if (collectibles == 0 || game->player == 0 || game->exit == 0
 		|| game->player > 1 || game->exit > 1)
-		return (ft_printf("Error in elements count!"), -1);
+		return (-1);
 	return (game->collectibles = collectibles, collectibles);
 }

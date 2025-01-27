@@ -1,46 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbr_printf.c                                    :+:      :+:    :+:   */
+/*   ft_str_printf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: palexand <palexand@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/09 13:06:31 by palexand          #+#    #+#             */
-/*   Updated: 2024/11/09 13:06:31 by palexand         ###   ########.fr       */
+/*   Created: 2024/11/09 13:10:12 by palexand          #+#    #+#             */
+/*   Updated: 2024/11/09 13:10:12 by palexand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libft.h"
 
-int	ft_nbr_printf(int n);
-
-int	ft_nbrlen(int n)
+int	ft_str_printf(char *str)
 {
-	int	len;
+	int	i;
 
-	len = 0;
-	if (n == 0)
-		len = 1;
-	if (n == -2147483648)
+	i = 0;
+	if (!str)
 	{
-		len += 2;
-		n = 147483648;
+		ft_putstr_fd("(null)", 1);
+		return (6);
 	}
-	else if (n < 0)
-	{
-		len++;
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		n /= 10;
-		len++;
-	}
-	return (len);
-}
-
-int	ft_nbr_printf(int n)
-{
-	ft_putnbr_fd(n, 1);
-	return (ft_nbrlen(n));
+	ft_putstr_fd(str, 1);
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

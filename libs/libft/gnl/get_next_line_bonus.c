@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "../libft.h"
 
 char	*fill_line(int fd, char *left_c);
 char	*line_definer(char *left_c);

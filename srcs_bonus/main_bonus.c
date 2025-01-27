@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc != 2)
-		return (0);
+		return (ft_printf((RED"\n ERROR \n NO MAP FOUND\n\n"RESET)), 0);
 	game = NULL;
 	game = ft_calloc(sizeof(t_game), 1);
 	init_values(game);
@@ -37,7 +37,7 @@ void	map_validation(char *file, t_game *game)
 {
 	if (validate_ber(file) == -1)
 		return (ft_printf((RED"\n\
-ERROR ON FILE NAME\n\n\
+ERROR \n INVALID FILE NAME\n\n\
 "RESET)), exit_game(game, 0));
 	game->map.matrix = matrix(file);
 	game->map.mtx = matrix(file);
