@@ -31,11 +31,8 @@ The **So Long 42** project is a simple 2D game where the player navigates throug
 
 In addition to the base functionality, the project includes several bonus features that enhance the gameplay experience:
 
-1. **🌍 Multiple Levels**: The game includes multiple levels of increasing difficulty.
+1. **🌍 Multiple Levels**: The game includes multiple levels of increasing difficulty and accepts your own map input as long as it is valid.
 2. **🎨 Enhanced Graphics**: Improved graphical assets to make the game more visually appealing.
-3. **🔊 Sound Effects**: Added sound effects for player actions and game events.
-4. **🤖 Enemy AI**: Introduced basic enemy AI that adds an extra layer of challenge.
-5. **⚡ Power-ups**: Implemented various power-ups that provide temporary boosts to the player.
 
 These bonus features represent the final work and showcase the advanced capabilities and creativity applied in this project.
 
@@ -56,29 +53,30 @@ To get a local copy up and running, follow these steps:
   ```sh
   make
 ```
-Usage
+**Usage**
 To start the game, run the following command after building the project:
 
 ```sh
 ./so_long
 ```
-Controls
+**Controls**
 W: Move up
 A: Move left
 S: Move down
 D: Move right
 ESC: Exit the game
-Contributing
+
+**Contributing**
 Contributions are welcome! If you have suggestions for improvements or new features, please feel free to open an issue or submit a pull request.
 
-License
+**License**
 Distributed under the MIT License. See LICENSE for more information.
 
-Acknowledgements
+**Acknowledgements**
 The 42 School for providing the educational resources and environment.
 Open source projects and communities that contributed to the libraries and tools used in this project.
 Enjoy the game and have fun exploring the bonus features!
 
-Code
+**Code**
 
 Feel free to customize it further to match your preferences and project specifics.
