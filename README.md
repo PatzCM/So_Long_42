@@ -51,13 +51,13 @@ To get a local copy up and running, follow these steps:
 
 3. **Build the project**:
   ```sh
-  make
+  make bonus
 ```
 **Usage**
 To start the game, run the following command after building the project:
-
+Don't forget to select the map before running.
 ```sh
-./so_long
+./so_long_bonus maps/valid/
 ```
 **Controls**
 W: Move up
