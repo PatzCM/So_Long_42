@@ -1,79 +1,185 @@
-# so_long
+# 🌟 So Long 42 🌟
+```
+   ▄████████  ▄██████▄        ▄█        ▄██████▄  ███▄▄▄▄      ▄██████▄  
+  ███    ███ ███    ███      ███       ███    ███ ███▀▀▀██▄   ███    ███ 
+  ███    █▀  ███    ███      ███       ███    ███ ███   ███   ███    █▀  
+  ███        ███    ███      ███       ███    ███ ███   ███  ▄███        
+▀███████████ ███    ███      ███       ███    ███ ███   ███ ▀▀███ ████▄  
+         ███ ███    ███      ███       ███    ███ ███   ███   ███    ███ 
+   ▄█    ███ ███    ███      ███▌    ▄ ███    ███ ███   ███   ███    ███ 
+ ▄████████▀   ▀██████▀       █████▄▄██  ▀██████▀   ▀█   █▀    ████████▀  
+                             ▀                                            
+```
 
-A small 2D tile-based game built in C for the 42 curriculum, using MiniLibX. The objective is simple: collect every collectible on the map, then reach the exit without getting trapped.
+<div align="center">
 
-## Overview
+![42 Badge](https://img.shields.io/badge/42-so_long-000000?style=for-the-badge&logo=42&logoColor=white)
+![Language](https://img.shields.io/badge/language-C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Build](https://img.shields.io/badge/build-Makefile-427819?style=for-the-badge&logo=gnu&logoColor=white)
+![Graphics](https://img.shields.io/badge/graphics-MiniLibX-orange?style=for-the-badge)
+![Platform](https://img.shields.io/badge/platform-Linux-blue?style=for-the-badge&logo=linux&logoColor=white)
+![Status](https://img.shields.io/badge/status-Bonus%20Included-success?style=for-the-badge)
 
-This project focuses on:
+</div>
 
-- reading and validating `.ber` map files
-- rendering a 2D game window with MiniLibX
-- handling keyboard input and player movement
-- enforcing game rules such as walls, collectibles, and exits
-- checking whether a map is actually solvable
-- extending the mandatory version with animations and enemies in the bonus version
+## 🎮 About the Project
 
-The repository includes both the mandatory and bonus implementations.
+**so_long** is a 42 School graphics project where the goal is to build a small 2D game in **C** using **MiniLibX**.
+The player must explore a map, collect every collectible, and reach the exit while respecting map rules and movement constraints.
 
-## Features
+This repository includes both the **mandatory** part and the **bonus** version, with extra animations, enemies, and a graphical move counter.
 
-### Mandatory
+---
 
-- rectangular map validation
-- closed walls around the map
-- required map contents validation (`P`, `E`, `C`, `0`, `1`)
-- player movement with move counting
-- collectible tracking
-- exit unlock flow after collecting everything
-- map path validation before the game starts
+## ✨ Portfolio Highlights
 
-### Bonus
+This project demonstrates:
 
-- animated sprites
-- enemy spawning and rendering
-- player idle animation
-- extra tile and movement animations
-- graphical move counter
-- multiple sample maps
+- **C programming fundamentals**
+- **2D rendering with MiniLibX**
+- **map parsing and validation**
+- **event-driven input handling**
+- **path validation / solvability checking**
+- **memory management**
+- **game loop logic**
+- **sprite animation and bonus gameplay systems**
 
-## Project Structure
+---
 
-- `srcs/` — mandatory source files
-- `srcs_bonus/` — bonus source files
-- `inc/` — headers
-- `img/` — textures and animation assets
-- `maps/valid/` — playable example maps
-- `maps/invalid/` — invalid test maps for parser/validator checks
-- `libs/libft/` — custom C utility library
-- `libs/mlx/` / `libs/minilibx-linux` — MiniLibX dependency
-- `Makefile` — build rules for mandatory and bonus targets
+## 🕹️ Features
 
-## Build
+### Mandatory Part
+
+- Load and validate `.ber` maps
+- Detect invalid shapes and map content
+- Check that the map is closed by walls
+- Ensure there is exactly:
+  - `1` player (`P`)
+  - `1` exit (`E`)
+  - at least `1` collectible (`C`)
+- Render the map in a graphical window
+- Move the player using keyboard controls
+- Count and display moves
+- Allow exit only after collecting everything
+- Validate whether the map is actually solvable before starting
+
+### Bonus Part
+
+- Animated player sprites
+- Animated environment elements
+- Enemy spawning and rendering
+- Enemy movement/interaction systems
+- Idle animations
+- Graphical move counter using sprite digits
+- More polished visual presentation
+- Multiple sample maps for testing
+
+---
+
+## 🗂️ Project Structure
+
+```text
+So_Long_42/
+├── inc/               # headers
+├── img/               # in-game textures and xpm assets
+├── graphical/         # source art / sprite resources
+├── libs/              # libft + MiniLibX
+├── maps/
+│   ├── valid/         # working maps
+│   └── invalid/       # invalid maps for testing parser rules
+├── srcs/              # mandatory sources
+├── srcs_bonus/        # bonus sources
+└── Makefile           # build rules
+```
+
+---
+
+## 🧠 How It Works
+
+At startup, the program:
+
+1. checks if a map path was provided
+2. validates the `.ber` extension
+3. reads the map into memory
+4. checks map shape and required elements
+5. validates that the map is playable
+6. initializes MiniLibX
+7. loads textures and sprites
+8. renders the game window and starts the loop
+
+From your codebase:
+
+- `srcs/main.c` handles the mandatory startup flow
+- `srcs_bonus/main_bonus.c` extends that flow with:
+  - animation setup
+  - enemy initialization
+  - graphical move display
+  - loop hooks for animated gameplay
+
+---
+
+## 🧱 Map Rules
+
+A valid map must:
+
+- have the `.ber` extension
+- be rectangular
+- be surrounded by walls
+- contain only valid characters
+- contain exactly one player start (`P`)
+- contain exactly one exit (`E`)
+- contain at least one collectible (`C`)
+- be solvable
+
+### Tile Legend
+
+- `1` → Wall
+- `0` → Empty floor
+- `P` → Player start
+- `C` → Collectible
+- `E` → Exit
+
+---
+
+## 🎯 Controls
+
+- `W` → Move up
+- `A` → Move left
+- `S` → Move down
+- `D` → Move right
+- `ESC` → Exit the game
+- Window close button → Quit cleanly
+
+---
+
+## ⚙️ Build Instructions
 
 ### Requirements
 
-This project is configured for MiniLibX on Linux/X11.
+This project is built for **Linux** with **MiniLibX / X11**.
 
-You will need:
+You need:
 
 - `cc`
 - `make`
 - X11 development libraries
-- the bundled MiniLibX sources in `libs/`
+- local dependencies already included in `libs/`
 
-### Compile mandatory
+### Compile mandatory version
 
 ```bash
+git clone https://github.com/PatzCM/So_Long_42.git
+cd So_Long_42
 make
 ```
 
-### Compile bonus
+### Compile bonus version
 
 ```bash
 make bonus
 ```
 
-### Clean objects
+### Clean object files
 
 ```bash
 make clean
@@ -85,13 +191,21 @@ make clean
 make fclean
 ```
 
-### Rebuild
+### Rebuild everything
 
 ```bash
 make re
 ```
 
-## Run
+### Norm check
+
+```bash
+make norminette
+```
+
+---
+
+## ▶️ Running the Game
 
 ### Mandatory
 
@@ -105,41 +219,11 @@ make re
 ./so_long_bonus maps/valid/map1.ber
 ```
 
-You can replace the example map with any valid `.ber` file.
+You can replace `map1.ber` with any valid `.ber` map in the repository.
 
-## Map Rules
+---
 
-A valid map must:
-
-- use the `.ber` extension
-- be rectangular
-- be surrounded by walls
-- contain exactly one player start (`P`)
-- contain exactly one exit (`E`)
-- contain at least one collectible (`C`)
-- contain only valid characters
-- be solvable
-
-### Tile Legend
-
-- `1` — wall
-- `0` — empty floor
-- `P` — player start
-- `C` — collectible
-- `E` — exit
-
-## Controls
-
-- `W` — move up
-- `A` — move left
-- `S` — move down
-- `D` — move right
-- `ESC` — quit the game
-- window close button — exit cleanly
-
-## Example Maps
-
-Included sample maps:
+## 🗺️ Included Example Maps
 
 ### Valid maps
 
@@ -151,7 +235,7 @@ Included sample maps:
 
 ### Invalid maps
 
-These are useful for testing validation and error handling:
+Useful for testing parser and validation errors:
 
 - `maps/invalid/has_other_elem.ber`
 - `maps/invalid/hole_in_wall.ber`
@@ -162,31 +246,98 @@ These are useful for testing validation and error handling:
 - `maps/invalid/only_e_and_p.ber`
 - `maps/invalid/only_p.ber`
 
-## What the Code Does
+---
 
-At startup, the program:
+## 🖼️ Screenshots / GIFs
 
-1. checks the input argument and file extension
-2. loads the map into memory
-3. validates shape and required elements
-4. verifies the map can be completed
-5. initializes the window and textures
-6. renders the game and starts the event loop
+Your repository already contains visual assets in `graphical/`, including:
 
-The bonus version additionally initializes animations, enemies, and graphical counters before entering the main loop.
+- `graphical/player.png`
+- `graphical/collec.png`
+- `graphical/exit.png`
+- `graphical/a_exit.png`
 
-## Notes
+If you want a truly portfolio-level README, add one or more of these next:
 
-- The default bonus target builds `so_long_bonus`.
-- The project uses `libft` and MiniLibX from the local `libs/` directory.
-- The Makefile also includes a `norminette` target for style checks.
+- a gameplay GIF in the repo, for example: `assets/so_long_demo.gif`
+- one screenshot of the mandatory version
+- one screenshot of the bonus version
 
-## Author
+For now, here is a ready-to-fill section you can keep and update:
+
+```md
+## Gameplay Preview
+
+![Gameplay GIF](./assets/so_long_demo.gif)
+![Mandatory Screenshot](./assets/so_long_mandatory.png)
+![Bonus Screenshot](./assets/so_long_bonus.png)
+```
+
+Once you add the files, the README will display them automatically.
+
+---
+
+## 🎨 Visual Identity
+
+This project appears to use custom assets and sprite resources from folders such as:
+
+- `graphical/idle`
+- `graphical/walk_up`
+- `graphical/walk_down`
+- `graphical/walk_left`
+- `graphical/walk_right`
+- `graphical/idle_zombie`
+- `graphical/z_up`
+- `graphical/z_down`
+- `graphical/z_left`
+- `graphical/z_right`
+- `graphical/walls`
+
+That gives the bonus version a much stronger game feel than a basic mandatory-only implementation.
+
+---
+
+## 📚 Technical Notes
+
+- Main executable: `so_long`
+- Bonus executable: `so_long_bonus`
+- Uses local `libft` from `libs/libft`
+- Uses local MiniLibX build from `libs/mlx`
+- The Makefile includes a `norminette` target
+- The project is primarily written in **C** with a **Makefile** build system
+
+---
+
+## 👩‍💻 Author
 
 **Patricia Monteiro**
 
-GitHub: [PatzCM](https://github.com/PatzCM)
+- GitHub: [PatzCM](https://github.com/PatzCM)
+- Project: [So_Long_42](https://github.com/PatzCM/So_Long_42)
 
-## License
+---
 
-This repository does not currently include a license file. If you want, you can add one later.
+## 🏫 42 Context
+
+This project is part of the **42 curriculum**, where the objective is not only to make a working game, but also to apply strict coding rules, validation logic, graphics programming, and clean memory handling.
+
+It reflects practical work in:
+
+- structured C development
+- algorithmic thinking
+- low-level graphics handling
+- debugging and validation
+- transforming a small specification into an interactive project
+
+---
+
+## 🚀 Next README Upgrade Ideas
+
+If you want, the next version can include:
+
+- embedded real screenshots from the game
+- a gameplay GIF at the top
+- a centered banner section with image previews
+- project score / evaluation section
+- “lessons learned” and “what I’d improve next” sections
+- a fully polished GitHub portfolio presentation style
