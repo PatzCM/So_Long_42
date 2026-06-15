@@ -1,82 +1,192 @@
-# 🌟 So Long 42 🌟
+# so_long
+
+A small 2D tile-based game built in C for the 42 curriculum, using MiniLibX. The objective is simple: collect every collectible on the map, then reach the exit without getting trapped.
+
+## Overview
+
+This project focuses on:
+
+- reading and validating `.ber` map files
+- rendering a 2D game window with MiniLibX
+- handling keyboard input and player movement
+- enforcing game rules such as walls, collectibles, and exits
+- checking whether a map is actually solvable
+- extending the mandatory version with animations and enemies in the bonus version
+
+The repository includes both the mandatory and bonus implementations.
+
+## Features
+
+### Mandatory
+
+- rectangular map validation
+- closed walls around the map
+- required map contents validation (`P`, `E`, `C`, `0`, `1`)
+- player movement with move counting
+- collectible tracking
+- exit unlock flow after collecting everything
+- map path validation before the game starts
+
+### Bonus
+
+- animated sprites
+- enemy spawning and rendering
+- player idle animation
+- extra tile and movement animations
+- graphical move counter
+- multiple sample maps
+
+## Project Structure
+
+- `srcs/` — mandatory source files
+- `srcs_bonus/` — bonus source files
+- `inc/` — headers
+- `img/` — textures and animation assets
+- `maps/valid/` — playable example maps
+- `maps/invalid/` — invalid test maps for parser/validator checks
+- `libs/libft/` — custom C utility library
+- `libs/mlx/` / `libs/minilibx-linux` — MiniLibX dependency
+- `Makefile` — build rules for mandatory and bonus targets
+
+## Build
+
+### Requirements
+
+This project is configured for MiniLibX on Linux/X11.
+
+You will need:
+
+- `cc`
+- `make`
+- X11 development libraries
+- the bundled MiniLibX sources in `libs/`
+
+### Compile mandatory
+
+```bash
+make
 ```
-   ▄████████  ▄██████▄        ▄█        ▄██████▄  ███▄▄▄▄      ▄██████▄  
-  ███    ███ ███    ███      ███       ███    ███ ███▀▀▀██▄   ███    ███ 
-  ███    █▀  ███    ███      ███       ███    ███ ███   ███   ███    █▀  
-  ███        ███    ███      ███       ███    ███ ███   ███  ▄███        
-▀███████████ ███    ███      ███       ███    ███ ███   ███ ▀▀███ ████▄  
-         ███ ███    ███      ███       ███    ███ ███   ███   ███    ███ 
-   ▄█    ███ ███    ███      ███▌    ▄ ███    ███ ███   ███   ███    ███ 
- ▄████████▀   ▀██████▀       █████▄▄██  ▀██████▀   ▀█   █▀    ████████▀  
-                             ▀                                            
+
+### Compile bonus
+
+```bash
+make bonus
 ```
 
-Welcome to the **So Long 42** project! This repository contains the source code for a 2D game developed as part of the 42 school curriculum. The project is primarily written in C, with a Makefile for build automation.
+### Clean objects
 
-## Table of Contents
-- [About the Project](#about-the-project)
-- [Bonus Features](#bonus-features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Controls](#controls)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
-
-## About the Project
-
-The **So Long 42** project is a simple 2D game where the player navigates through a maze to collect items and reach the exit. The game was developed to demonstrate proficiency in C programming and to practice game development concepts.
-
-## Bonus Features
-
-In addition to the base functionality, the project includes several bonus features that enhance the gameplay experience:
-
-1. **🌍 Multiple Levels**: The game includes multiple levels of increasing difficulty and accepts your own map input as long as it is valid.
-2. **🎨 Enhanced Graphics**: Improved graphical assets to make the game more visually appealing.
-
-These bonus features represent the final work and showcase the advanced capabilities and creativity applied in this project.
-
-## Installation
-
-To get a local copy up and running, follow these steps:
-
-1. **Clone the repository**:
-   ```sh
-   git clone https://github.com/PatzCM/So_Long_42.git
-
-2.**Navigate to the project directory**:
-  ```sh
-  cd So_Long_42
+```bash
+make clean
 ```
 
-3. **Build the project**:
-  ```sh
-  make bonus
+### Full clean
+
+```bash
+make fclean
 ```
-**Usage**
-To start the game, run the following command after building the project:
-Don't forget to select the map before running.
-```sh
-./so_long_bonus maps/valid/
+
+### Rebuild
+
+```bash
+make re
 ```
-**Controls**
-W: Move up
-A: Move left
-S: Move down
-D: Move right
-ESC: Exit the game
 
-**Contributing**
-Contributions are welcome! If you have suggestions for improvements or new features, please feel free to open an issue or submit a pull request.
+## Run
 
-**License**
-Distributed under the MIT License. See LICENSE for more information.
+### Mandatory
 
-**Acknowledgements**
-The 42 School for providing the educational resources and environment.
-Open source projects and communities that contributed to the libraries and tools used in this project.
-Enjoy the game and have fun exploring the bonus features!
+```bash
+./so_long maps/valid/map1.ber
+```
 
-**Code**
+### Bonus
 
-Feel free to customize it further to match your preferences and project specifics.
+```bash
+./so_long_bonus maps/valid/map1.ber
+```
+
+You can replace the example map with any valid `.ber` file.
+
+## Map Rules
+
+A valid map must:
+
+- use the `.ber` extension
+- be rectangular
+- be surrounded by walls
+- contain exactly one player start (`P`)
+- contain exactly one exit (`E`)
+- contain at least one collectible (`C`)
+- contain only valid characters
+- be solvable
+
+### Tile Legend
+
+- `1` — wall
+- `0` — empty floor
+- `P` — player start
+- `C` — collectible
+- `E` — exit
+
+## Controls
+
+- `W` — move up
+- `A` — move left
+- `S` — move down
+- `D` — move right
+- `ESC` — quit the game
+- window close button — exit cleanly
+
+## Example Maps
+
+Included sample maps:
+
+### Valid maps
+
+- `maps/valid/map0.ber`
+- `maps/valid/map1.ber`
+- `maps/valid/map2.ber`
+- `maps/valid/map3.ber`
+- `maps/valid/map4.ber`
+
+### Invalid maps
+
+These are useful for testing validation and error handling:
+
+- `maps/invalid/has_other_elem.ber`
+- `maps/invalid/hole_in_wall.ber`
+- `maps/invalid/map1.ber`
+- `maps/invalid/not_rect.ber`
+- `maps/invalid/only_c.ber`
+- `maps/invalid/only_e.ber`
+- `maps/invalid/only_e_and_p.ber`
+- `maps/invalid/only_p.ber`
+
+## What the Code Does
+
+At startup, the program:
+
+1. checks the input argument and file extension
+2. loads the map into memory
+3. validates shape and required elements
+4. verifies the map can be completed
+5. initializes the window and textures
+6. renders the game and starts the event loop
+
+The bonus version additionally initializes animations, enemies, and graphical counters before entering the main loop.
+
+## Notes
+
+- The default bonus target builds `so_long_bonus`.
+- The project uses `libft` and MiniLibX from the local `libs/` directory.
+- The Makefile also includes a `norminette` target for style checks.
+
+## Author
+
+**Patricia Monteiro**
+
+GitHub: [PatzCM](https://github.com/PatzCM)
+
+## License
+
+This repository does not currently include a license file. If you want, you can add one later.
