@@ -250,30 +250,13 @@ Useful for testing parser and validation errors:
 
 ## 🖼️ Screenshots / GIFs
 
-Your repository already contains visual assets in `graphical/`, including:
+This repository already contains visual assets in `graphical/`, including:
 
 - `graphical/player.png`
 - `graphical/collec.png`
 - `graphical/exit.png`
 - `graphical/a_exit.png`
 
-If you want a truly portfolio-level README, add one or more of these next:
-
-- a gameplay GIF in the repo, for example: `assets/so_long_demo.gif`
-- one screenshot of the mandatory version
-- one screenshot of the bonus version
-
-For now, here is a ready-to-fill section you can keep and update:
-
-```md
-## Gameplay Preview
-
-![Gameplay GIF](./assets/so_long_demo.gif)
-![Mandatory Screenshot](./assets/so_long_mandatory.png)
-![Bonus Screenshot](./assets/so_long_bonus.png)
-```
-
-Once you add the files, the README will display them automatically.
 
 ---
 
@@ -330,14 +313,3 @@ It reflects practical work in:
 - transforming a small specification into an interactive project
 
 ---
-
-## 🚀 Next README Upgrade Ideas
-
-If you want, the next version can include:
-
-- embedded real screenshots from the game
-- a gameplay GIF at the top
-- a centered banner section with image previews
-- project score / evaluation section
-- “lessons learned” and “what I’d improve next” sections
-- a fully polished GitHub portfolio presentation style
